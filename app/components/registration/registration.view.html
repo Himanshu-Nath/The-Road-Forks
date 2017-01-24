@@ -1,6 +1,6 @@
 <div ng-controller="RegistrationController as RController">
     <div class="col-md-6 col-md-offset-3">
-    <h2>Register</h2>
+    <h2>Sign Up</h2>
     <form name="form" ng-submit="RController.register()" role="form">
         <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
             <label for="username">First name</label>
@@ -22,12 +22,12 @@
             <input type="password" name="password" id="password" class="form-control" ng-model="RController.user.password" required />
             <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.conformpassword.$dirty && form.conformpassword.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': form.conformPassword.$dirty && form.conformPassword.$error.required }">
             <label for="password">Conform Password</label>
-            <input type="password" name="conformpassword" id="conformpassword" class="form-control" ng-model="RController.user.conformpassword" required />
-            <span ng-show="form.conformpassword.$dirty && form.conformpassword.$error.required" class="help-block">Conform Password is required</span>
+            <input type="password" name="conformPassword" id="conformPassword" class="form-control" ng-model="RController.user.conformPassword" required />
+            <span ng-show="form.conformPassword.$dirty && form.conformPassword.$error.required" class="help-block">Conform Password is required</span>
         </div>
-        <span ng-if="RController.user.password != RController.user.conformpassword" class="help-block">Password Is Not Same</span>
+        <span ng-if="RController.user.password != RController.user.conformPassword" class="help-block">Password Is Not Same</span>
         <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
             <label for="username">Email</label>
             <input type="text" name="email" id="email" class="form-control" ng-model="RController.user.email" required />
@@ -39,7 +39,7 @@
                         class="form-control"
 						class="btn btn-default dropdown-toggle"
 						ng-options="question for question in RController.questionList"
-						ng-model="RController.question" required>
+						ng-model="RController.user.question" required>
 						<option value="" disabled>Please Select Any Question</option>
 			</select>
         </div>

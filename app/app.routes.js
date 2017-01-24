@@ -24,6 +24,13 @@ angular.module('trfApp')
           data : {'headerName' : 'THE ROAD FORKS', 'pageName' : 'Registration'}
         })
 
+        .state('login.forgotPassword', {
+          url : '/forgotPassword',
+          templateUrl : 'app/components/forgotPassword/forgotPassword.view.html',
+          authenticate : true,
+          data : {'headerName' : 'THE ROAD FORKS', 'pageName' : 'Forgot Password'}
+        })
+
         .state('home', {
           url : '/home',
           templateUrl : 'app/components/dashboard/home.view.html',

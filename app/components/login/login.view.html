@@ -1,6 +1,6 @@
 <div ng-controller="LoginController as LController">
 <div class="col-md-6 col-md-offset-3">
-    <h2>Login</h2>
+    <h2>Sign In</h2>
     <form name="form" ng-submit="LController.login()" role="form">
         <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
             <label for="username">Username</label>
@@ -15,7 +15,10 @@
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || LController.dataLoading" class="btn btn-primary">Login</button>
             <img ng-if="LController.dataLoading" src="assets/images/loader.gif"/>
-            <a href="" ng-click="LController.registration()" class="btn btn-link">Register</a>
+            <a href="" ng-click="LController.registration()" class="btn btn-link">Sign Up</a>
+        </div>
+        <div style="text-align:center">
+        <a href="" ng-click="LController.forgotPassword()" class="btn btn-link">Forgot Your Password?</a>
         </div>
     </form>
     </br>

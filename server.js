@@ -10,8 +10,9 @@ app.use(bodyParser.json());
 
 var user = require('./route/trfUser');
 
-app.post('/api/register', user.registerUser);
-app.post('/api/login', user.loginUser);
+app.post('/trf/api/register', user.registerUser);
+app.post('/trf/api/login', user.loginUser);
+app.post('/trf/api/forgetPassword', user.forgetPassword);
 
 var server = app.listen(port, function () {
 	var host = server.address().address

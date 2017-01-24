@@ -1,12 +1,24 @@
 angular.module('trfApp')
 
-.controller('RegistrationController', ['$state', 'localStorageService', 'RegistrationService', 'FlashService', '$window',
-  function($state, localStorageService, LoginService, FlashService, $window) {
+.controller('RegistrationController', ['$state', 'localStorageService', 'RegistrationService', 'FlashService', '$window', 'QUERY_QUESTIONS',
+  function($state, localStorageService, RegistrationService, FlashService, $window, QUERY_QUESTIONS) {
 
     var vm = this;
-    vm.questionList = ["Your First School Name ?", "Your First Pet Name ?", "Your Nick Name ?",
-    "Your Current Bike Number ?", "Your Graduation Percentage ?", "Your First Boss Name ?", "Your Father Last Name ?"]
+    vm.questionList = QUERY_QUESTIONS.questionList;
 
+    vm.register = function(){
+        RegistrationService.registerUser(vm.user)
+      .then(function(response) {
+        if(response.data.status == true) 
+          swal("Success", "User is registered", "success");
+        else
+          swal("Fail", "Error is user registration", "error")
+        $state.go('login.signin');
+      },
+      function(error) {
+        swal("Error", "Error "+error, "error")
+      });
+    }
     
   }
 ]);

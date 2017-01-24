@@ -18,11 +18,14 @@ exports.registerUser = function(req, res){
         firstName: user.firstName,
         lastName : user.lastName,
         username : user.username,
-        password : user.password,
+        password : user.conformPassword,
         status : "Active",
         token : user.token,
-        lastActive : user.lastActive,
-        image : user.image
+        lastActive : "",
+        image : "",
+        question1 : user.question,
+        answer1 : user.answer,
+        email : user.email
     });    
     
     user.save(function(err, result){
@@ -35,11 +38,19 @@ exports.registerUser = function(req, res){
             console.log("firstName : "+user.firstName);
             var registerUser = new RegisteredUsers({
 
+                userId : userId,
                 firstName: user.firstName,
                 lastName : user.lastName,
-                userId : userId,
-                email : email,
                 token : user.token,
+                friends : [],
+                invitations : [],
+                favPlaces : [],
+                block : [],
+                email : email,
+                org : false,
+                tripImages : [],
+                visitedPlaces : [],
+                newTrip : [],                
                 active : "Offline"
             });          
             registerUser.save(function(err, result){});          
@@ -62,5 +73,23 @@ exports.loginUser = function(req, res){
         else
             res.send({status:false});
         
-    });    
+    });
+}
+    
+//Forgot User Password
+exports.forgetPassword = function(req, res){
+    var user = req.body;
+    
+    Users.findOne({"username": user.username, "email": user.email, "question1": user.question
+                , "answer1": user.answer}, function(err, result) {
+        if (err) return console.error(err);
+        if(result != null && result.length != 0) {
+            console.log(result);
+            console.log(result.token);
+            res.send({status : true, result});
+        }
+        else
+            res.send({status:false});
+        
+    });  
 }

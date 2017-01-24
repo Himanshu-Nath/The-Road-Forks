@@ -9,6 +9,8 @@ var UserSchema = new Schema({
     status : String,
     token : String,
     lastActive : String,
-    image : String
+    image : String,
+    question1 : String,
+    answer1 : String
 });
 mongoose.model('trfuser', UserSchema);

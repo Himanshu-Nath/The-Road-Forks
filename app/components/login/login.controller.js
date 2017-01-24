@@ -25,5 +25,8 @@ angular.module('trfApp')
     vm.registration = function(){
         $state.go('login.registration');
     }
+    vm.forgotPassword = function(){
+        $state.go('login.forgotPassword');
+    }
   }
 ]);

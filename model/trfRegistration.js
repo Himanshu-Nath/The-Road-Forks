@@ -8,7 +8,7 @@ var RegisteredUserSchema = new Schema({
     token : String,
     friends : [],
 	invitations : [],
-	fav : [],
+	favPlaces : [],
 	block : [],
     email : String,
     org : Boolean,
