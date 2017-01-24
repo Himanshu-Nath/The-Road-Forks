@@ -1,0 +1,58 @@
+<div ng-controller="RegistrationController as RController">
+    <div class="col-md-6 col-md-offset-3">
+    <h2>Register</h2>
+    <form name="form" ng-submit="RController.register()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+            <label for="username">First name</label>
+            <input type="text" name="firstName" id="firstName" class="form-control" ng-model="RController.user.firstName" required />
+            <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+            <label for="username">Last name</label>
+            <input type="text" name="lastName" id="Text1" class="form-control" ng-model="RController.user.lastName" required />
+            <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" class="form-control" ng-model="RController.user.username" required />
+            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" ng-model="RController.user.password" required />
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.conformpassword.$dirty && form.conformpassword.$error.required }">
+            <label for="password">Conform Password</label>
+            <input type="password" name="conformpassword" id="conformpassword" class="form-control" ng-model="RController.user.conformpassword" required />
+            <span ng-show="form.conformpassword.$dirty && form.conformpassword.$error.required" class="help-block">Conform Password is required</span>
+        </div>
+        <span ng-if="RController.user.password != RController.user.conformpassword" class="help-block">Password Is Not Same</span>
+        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+            <label for="username">Email</label>
+            <input type="text" name="email" id="email" class="form-control" ng-model="RController.user.email" required />
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.question.$dirty && form.question.$error.required }">
+            <label for="username">Question</label>
+            <select name="question" id="question"
+                        class="form-control"
+						class="btn btn-default dropdown-toggle"
+						ng-options="question for question in RController.questionList"
+						ng-model="RController.question" required>
+						<option value="" disabled>Please Select Any Question</option>
+			</select>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.answer.$dirty && form.answer.$error.required }">
+            <label for="username">Answer</label>
+            <input type="text" name="answer" id="answer" class="form-control" ng-model="RController.user.answer" required />
+            <span ng-show="form.answer.$dirty && form.answer.$error.required" class="help-block">Answer is required</span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || RController.dataLoading" class="btn btn-primary">Register</button>
+            <img ng-if="LController.dataLoading" src="assets/images/loader.gif"/>
+            <a href="#!/login" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
+</div>
+</div>

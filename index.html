@@ -4,12 +4,17 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <title>The Road Forks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSS (load bootstrap, fullcalender) -->
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/style/custom.css">
+  <link rel="stylesheet" href="assets/style/popup-styles.css">
+  <link rel="stylesheet" href="assets/style/bootstrap.css">
+  <link rel="stylesheet" href="assets/lib/sweetalert.css">
 
     <!-- JS (fontawesome, bootstrap, load angular, ui-router, and our custom js file) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -28,29 +33,39 @@
     
     <!-- angular services -->
     <script src="app/components/mainController/main.service.js"></script>
+    <script src="app/components/loginDashboard.service.js"></script>
     <script src="app/components/login/login.service.js"></script>
-    <script src="app/components/home/home.service.js"></script>
-    <script src="app/components/register/register.service.js"></script>
-    <script src="app/components/home/registeredUser/registeredUser.service.js"></script>
-    <script src="app/components/home/dashboard/dashboard.service.js"></script>
+    <script src="app/components/registration/registration.service.js"></script>
+    <script src="app/shared/partial/loginHeader/loginHeader.service.js"></script>
 
     <!-- angular controllers -->
     <script src="app/components/mainController/main.controller.js"></script>
+    <script src="app/components/loginDashboard.controller.js"></script>
     <script src="app/components/login/login.controller.js"></script>
-    <script src="app/components/home/home.controller.js"></script>
-    <script src="app/components/register/register.controller.js"></script>
-    <script src="app/components/home/registeredUser/registeredUser.controller.js"></script>
-    <script src="app/components/home/dashboard/dashboard.controller.js"></script>
-    
+    <script src="app/components/registration/registration.controller.js"></script>
+    <script src="app/shared/partial/loginHeader/loginHeader.controller.js"></script>
 
 </head>
 
 <!-- apply our angular app to our site -->
-<body ng-app="myApp" ng-controller="MainController as MainCtrl">
-
+<body ng-app="trfApp" ng-controller="MainController as MainCtrl">
   <div class="row">
     <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
     <div ui-view></div>
   </div>
+<footer class="text-center">
+	   	<div class="row">
+		    <div class="col-xs-12">
+          <div class="credits text-center">
+        <p>
+            <a href="https://plus.google.com/u/1/103234227632908776255" target="_top">Dveloper Profile Google+</a>
+        </p>
+        <p>
+            <a href="https://www.linkedin.com/in/himanshu-nath-05005571" target="_top">Linked In</a>
+        </p>
+    </div>
+	     	</div>
+	   	</div>  
+	</footer>
 </body>
 </html>

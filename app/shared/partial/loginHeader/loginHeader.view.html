@@ -1,0 +1,24 @@
+ <div ng-controller="LoginHeaderController as LHController">
+ 	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand"><image class="logo-image"
+						src="assets/images/logo.jpg" /></a>
+			</div>
+		</div>
+	</nav>
+	<div class="well nav-header">
+		<h3 class="pageCategory">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{MainCtrl.$state.current.data.headerName}}<span
+				class="verticalLine"></span><span class="pagename-color">{{MainCtrl.$state.current.data.pageName}}</span>
+		</h3>
+	</div>
+</div>	
