@@ -1,4 +1,4 @@
-angular.module('trfApp', ['ui.router', 'LocalStorageModule'])
+angular.module('trfApp', ['ui.router', 'LocalStorageModule', 'ui.bootstrap'])
 
 .constant('QUERY_QUESTIONS', {
 	"questionList" : ["Your First School Name ?", "Your First Pet Name ?", "Your Nick Name ?",

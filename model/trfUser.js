@@ -11,6 +11,7 @@ var UserSchema = new Schema({
     lastActive : String,
     image : String,
     question1 : String,
-    answer1 : String
+    answer1 : String,
+    email : String
 });
 mongoose.model('trfuser', UserSchema);

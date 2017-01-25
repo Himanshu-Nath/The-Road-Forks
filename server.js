@@ -8,11 +8,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
+var mail = require('./route/mail');
 var user = require('./route/trfUser');
 
 app.post('/trf/api/register', user.registerUser);
 app.post('/trf/api/login', user.loginUser);
-app.post('/trf/api/forgetPassword', user.forgetPassword);
+app.post('/trf/api/forgetPasswordByQuestions', user.forgetPasswordByQuestions);
+app.post('/trf/api/forgetPasswordByMail', mail.forgetPasswordByMail);
 
 var server = app.listen(port, function () {
 	var host = server.address().address

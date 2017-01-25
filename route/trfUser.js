@@ -71,25 +71,26 @@ exports.loginUser = function(req, res){
             res.send({status : true, result});
         }
         else
-            res.send({status:false});
-        
+            res.send({status:false});        
     });
 }
     
 //Forgot User Password
-exports.forgetPassword = function(req, res){
+exports.forgetPasswordByQuestions = function(req, res){
     var user = req.body;
     
-    Users.findOne({"username": user.username, "email": user.email, "question1": user.question
-                , "answer1": user.answer}, function(err, result) {
+    Users.findOne({"username": user.username}, function(err, result) {
         if (err) return console.error(err);
-        if(result != null && result.length != 0) {
-            console.log(result);
-            console.log(result.token);
-            res.send({status : true, result});
-        }
-        else
-            res.send({status:false});
-        
-    });  
+        if(result != null && result.length != 0){
+            Users.findOne({"username": user.username, "question1": user.question, "answer1": user.answer}, 
+            function(err, result) {
+                if (err) return console.error(err);
+                if(result != null && result.length != 0)
+                    res.send({status : true, user : true, result});
+                else
+                    res.send({status:false, user : true});        
+            });
+        } else
+            res.send({status : false, user : false});        
+    });
 }
