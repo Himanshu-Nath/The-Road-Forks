@@ -33,7 +33,7 @@ angular.module('trfApp')
 
         .state('home', {
           url : '/home',
-          templateUrl : 'app/components/dashboard/home.view.html',
+          templateUrl : 'app/components/partner/home/home.view.html',
           authenticate : true
         });
 

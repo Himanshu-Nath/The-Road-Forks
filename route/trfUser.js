@@ -62,12 +62,9 @@ exports.registerUser = function(req, res){
 //Login User
 exports.loginUser = function(req, res){
     var user = req.body;
-    
     Users.findOne({"username": user.username, "password": user.password, "token": user.token}, function(err, result) {
         if (err) return console.error(err);
         if(result != null && result.length != 0) {
-            console.log(result);
-            console.log(result.token);
             res.send({status : true, result});
         }
         else

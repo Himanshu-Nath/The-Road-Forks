@@ -59,7 +59,9 @@ var mailSending = function(result, pass, res){
 		subject : "Forgot Your Password In The Road Forks ?",
 		text : "Hello " +result.firstName+ ",\nYou recently request to reset your password for your The Road Forks"+
         " social account. Here is your new Password.\n\n "+pass+"\n\nIf you don't request a password reset "+
-        "please ignore this email or reply to let us know. \n\n Thanks\nThe Road Forks Team"
+        "please ignore this email or reply to let us know. \n\n Thanks\nThe Road Forks Team \n\n P.S. We also love "+
+        "hearing from you and helping you with any issues\n you have. Please reply to this email if you want to ask a"+
+        " question or just say hi."
 	}
 	smtpTransport.sendMail(mailOptions, function(error, response){
    	 if(error){

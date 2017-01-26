@@ -5,17 +5,20 @@ angular.module('trfApp')
 
     var vm = this;
 
-    vm.login = function() {        
-        LoginService.login(vm.login)
+    vm.login = function() {               
+        LoginService.login(vm.user)
         	.then(function(response) {
-                if (response.success) {
-                    //localStorageService.set("CurrentUserToken", response.token);
-                    $window.localStorage.setItem('CurrentUserToken', response.token);
-                    localStorageService.set('CurrentUserId', response.id);
-                    $window.localStorage.setItem('CurrentUserName', response.firstName);
-                    $state.go('home.dashboard');
+                console.log(response)
+                if (response.data.status) {
+                    var userInfo = {
+                        'token' : response.token,
+                        'id' : response.id,
+                        'firstname' : response.firstName
+                    }
+                    localStorageService.set('userInfo', userInfo);
+                    $state.go('home');
                 } else {
-                    FlashService.error(response.message);
+                    swal("Fail", "Wrong Username And Password", "error");
                     vm.dataLoading = false;
                 }
           },
