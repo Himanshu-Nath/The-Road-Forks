@@ -31,7 +31,14 @@ angular.module('trfApp')
           data : {'headerName' : 'THE ROAD FORKS', 'pageName' : 'Forgot Password'}
         })
 
-        .state('home', {
+        .state('client', {
+          url : '/client',
+          templateUrl: 'app/components/partner/partnerDashboard.view.html',
+          authenticate: true,
+          data : {'headerName' : 'THE ROAD FORKS', 'pageName' : 'Home'}
+        })
+
+        .state('client.home', {
           url : '/home',
           templateUrl : 'app/components/partner/home/home.view.html',
           authenticate : true

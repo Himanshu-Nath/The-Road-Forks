@@ -16,7 +16,7 @@ angular.module('trfApp')
                         'firstname' : response.firstName
                     }
                     localStorageService.set('userInfo', userInfo);
-                    $state.go('home');
+                    $state.go('client.home');
                 } else {
                     swal("Fail", "Wrong Username And Password", "error");
                     vm.dataLoading = false;

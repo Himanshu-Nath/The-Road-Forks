@@ -31,29 +31,34 @@
     <script src="app/flash.service.js"></script>
     <script src="app/authentication.service.js"></script>
     <script src="assets/lib/sweetalert.min.js"></script>
-
     
     <!-- angular services -->
     <script src="app/components/mainController/main.service.js"></script>
     <script src="app/components/loginDashboard.service.js"></script>
+    <script src="app/components/partner/partnerDashboard.service.js"></script>
     <script src="app/components/login/login.service.js"></script>
     <script src="app/components/registration/registration.service.js"></script>
     <script src="app/components/forgotPassword/forgotPassword.service.js"></script>
+    <script src="app/components/partner/home/home.service.js"></script>
     <script src="app/shared/partial/loginHeader/loginHeader.service.js"></script>
+    <script src="app/shared/partial/partnerHeader/partnerHeader.service.js"></script>
 
     <!-- angular controllers -->
     <script src="app/components/mainController/main.controller.js"></script>
     <script src="app/components/loginDashboard.controller.js"></script>
+    <script src="app/components/partner/partnerDashboard.controller.js"></script>
     <script src="app/components/login/login.controller.js"></script>
     <script src="app/components/registration/registration.controller.js"></script>
     <script src="app/components/forgotPassword/forgotPassword.controller.js"></script>
+    <script src="app/components/partner/home/home.controller.js"></script>
     <script src="app/shared/partial/loginHeader/loginHeader.controller.js"></script>
+    <script src="app/shared/partial/partnerHeader/partnerHeader.controller.js"></script>
 
 </head>
 
 <!-- apply our angular app to our site -->
 <body ng-app="trfApp" ng-controller="MainController as MainCtrl">
-  <div class="row">
+  <div class="row" style="background-color: floralwhite;">
     <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
     <div ui-view></div>
   </div>
