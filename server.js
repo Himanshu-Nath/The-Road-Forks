@@ -13,6 +13,7 @@ var user = require('./route/trfUser');
 
 app.post('/trf/api/register', user.registerUser);
 app.post('/trf/api/login', user.loginUser);
+app.post('/trf/api/uploadImage', user.uploadProfileImage);
 app.post('/trf/api/forgetPasswordByQuestions', user.forgetPasswordByQuestions);
 app.post('/trf/api/forgetPasswordByMail', mail.forgetPasswordByMail);
 

@@ -3,17 +3,31 @@ var user = require( '../model/trfUser');
 var registereduser = require( '../model/trfRegistration');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var multer = require('multer');
+var dateFormat = require('dateformat'); 
 
 var Users = mongoose.model('trfuser');
 var RegisteredUsers = mongoose.model('trfregistereduser');
 
+var imageName;
+var storage	=	multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './uploads/profilePics');
+  },
+  filename: function (req, file, callback) {
+    callback(null, imageName);    
+  }
+});
+
+var upload = multer({ storage : storage }).single('file');
+
 //Register User
 exports.registerUser = function(req, res){
-    console.log(req.body);
     var user = req.body;
     var userId;
     var email = user.email;
-    
+
+    imageName = 'file' + '-' + Date.now() + '.' + user.profilePicName.split('.')[user.profilePicName.split('.').length -1];
     var user = new Users({
         firstName: user.firstName,
         lastName : user.lastName,
@@ -22,7 +36,8 @@ exports.registerUser = function(req, res){
         status : "Active",
         token : user.token,
         lastActive : "",
-        image : "",
+        image : imageName,
+        // image : "",
         question1 : user.question,
         answer1 : user.answer,
         email : user.email
@@ -30,14 +45,11 @@ exports.registerUser = function(req, res){
     
     user.save(function(err, result){
         userId = result._id;
-        console.log("result : "+userId);
         if(err){
             response.errorMsg = err;
             res.send(response);
         }else{            
-            console.log("firstName : "+user.firstName);
             var registerUser = new RegisteredUsers({
-
                 userId : userId,
                 firstName: user.firstName,
                 lastName : user.lastName,
@@ -54,7 +66,7 @@ exports.registerUser = function(req, res){
                 active : "Offline"
             });          
             registerUser.save(function(err, result){});          
-        res.send({status:true});
+        res.send({status:true, playerId: userId});
       }
     });
 }
@@ -89,5 +101,16 @@ exports.forgetPasswordByQuestions = function(req, res){
             });
         } else
             res.send({status : false, user : false});        
+    });
+}
+
+//Upload Profile Pic
+exports.uploadProfileImage = function(req, res){
+    upload(req,res,function(err){
+        if(err){
+            res.json({status : false});
+            return;
+        } 
+        res.json({status : true});
     });
 }

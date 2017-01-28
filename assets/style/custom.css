@@ -1653,6 +1653,14 @@ hr {
   margin-right: 1%;
 }
 
+.container-body {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+ 
+}
+
 .container-subhome {
   width: 100%;
   height: 100%;
@@ -1660,7 +1668,7 @@ hr {
 
 .leftpane {
 	border:1px solid #cecece;
-    width: 24%;
+    width: 19%;
     height: 88%;
     float: left;
 	margin-top: 0.5%;
@@ -1673,7 +1681,7 @@ hr {
 
 .middlepane {
 	border:1px solid #cecece;
-    width: 49%;
+    width: 54%;
     height: 88%;
     float: left;
 	margin-top: 0.5%;
