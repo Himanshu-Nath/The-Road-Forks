@@ -45,31 +45,26 @@
             <div class="container-body">
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="list-group">
-							<div class="center bottommargin">								
-									<a class="list-group-item"> 
-                                        <div style="float: left;">
-                                            <img src="http://www.thefamouspeople.com/profiles/images/robert-downey-jr--2.jpg" 
-                                            width="50"/> Himanshu Nath
-                                        </div> 
-                                        <span class="badge">12</span>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <p>Hello User I am Himanshu Nath</p>
-                                    </a>
-                                    <a class="list-group-item"> <img
-										src="http://www.thefamouspeople.com/profiles/images/robert-downey-jr--2.jpg" width="50"/>
-								     Himanshu Nath <span class="badge">12</span>
-                                    <p>Hello User I am Himanshu Nath</p>
-                                    </a>
-                                    <a class="list-group-item"> <img
-										src="http://www.thefamouspeople.com/profiles/images/robert-downey-jr--2.jpg" width="50"/>
-								     Himanshu Nath <span class="badge">12</span>
-                                    <p>Hello User I am Himanshu Nath</p>
-                                    </a>								
-							</div>                     
-					</div>
+					<ul class="list-group">								
+                        <li class="list-group-item list-group-item-action flex-column align-items-start margin-padding-5" ng-repeat="trip in PHController.allTrips"> 
+                            <div style="float: left;">
+                                <img ng-src="{{PHController.imageURL}}{{trip.userImage}}"
+                                width="50"/>
+                            </div> 
+                            <span class="badge">{{trip.like.length}}</span>
+                            <div class="d-flex w-100 justify-content-between margin-30">                                        
+                                <small class="text-muted pull-right">{{trip.dayOP}} days ago</small>                                            
+                                <h4 class="mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{trip.name}}</b></h4>
+                                <small class="text-muted pull-right"><b>Email Address: </b><i>{{trip.email}}</i></small>                                        
+                            </div>
+                            <h5 class="mb-1"><b>{{trip.place}}</b></h5>
+                            <p class="mb-1">{{trip.description}}</p>
+                            <hr width="80%">
+                            <h6 class="mb-1"><b>Date Of Journy:</b> {{trip.startDate | date : "EEEE, MMMM d, y h:mm:ss a"}}</h6>
+                            <h6 class="mb-1"><b>End Date Of Journy: </b>{{trip.endDate | date : "fullDate"}}</h6>
+                            <h6 class="mb-1"><b>Contact Number: </b>{{trip.mobile}}</h6>                                                                                
+                        </li>                    
+					</ul>
 				</div>
 			</div>
 		</div>

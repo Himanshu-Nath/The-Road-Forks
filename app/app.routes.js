@@ -48,21 +48,41 @@ angular.module('trfApp')
   }
 ])
 
-.run(function ($rootScope, $state) {
-  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-    // if(toState.name.slice(0,5) != "login" && fromState.name.slice(0,5) != "login"
-    //     && toState.name.slice(0,5) != fromState.name.slice(0,5)) {
-    // if(authenticate) {
-    //   console.log("Sorry you can't navigate");
-    //   event.preventDefault();
-    // }
-    //$state.current.name;
-    // if (toState.authenticate && !AuthService.isAuthenticated()){
-    //   $state.transitionTo("login");
-    //   event.preventDefault();
-    // }
-  });
-});
+// .run(function ($rootScope, $state) {
+//   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+//     // if(toState.name.slice(0,5) != "login" && fromState.name.slice(0,5) != "login"
+//     //     && toState.name.slice(0,5) != fromState.name.slice(0,5)) {
+//     // if(authenticate) {
+//     //   console.log("Sorry you can't navigate");
+//     //   event.preventDefault();
+//     // }
+//     //$state.current.name;
+//     // if (toState.authenticate && !AuthService.isAuthenticated()){
+//     //   $state.transitionTo("login");
+//     //   event.preventDefault();
+//     // }
+//   });
+// });
+
+
+// .run(function ($rootScope, $state) {
+//   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+//     if(toState.name.slice(0,5) != "login" && fromState.name.slice(0,5) != "login"
+//         && toState.name.slice(0,5) != fromState.name.slice(0,5)) {
+//           console.log(toState.name);
+//           console.log(fromState.name);
+//     if(authenticate) {
+//       console.log("Sorry you can't navigate");
+//       event.preventDefault();
+//     }
+//     $state.current.name;
+//     if (toState.authenticate && !AuthService.isAuthenticated()){
+//       $state.transitionTo("login");
+//       event.preventDefault();
+//     }
+//   };
+// });
+// })
 
 
 
@@ -81,3 +101,21 @@ angular.module('trfApp')
 //                       vm.getAllCourses( null );
 //               }
 //       });
+
+
+// .run(function ($rootScope, $state, LoginService) {
+//   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+// 	  var login = LoginService.isLogin();
+	  
+// 	  if(toState.authenticate == true) {
+// 	  	if(!toState.name.includes(login)) {
+// 	  		event.preventDefault();
+// 	  	}
+// 		  if(login == null) {
+// 		  $state.go('login.signin');
+// 	  }
+// 	  } else if(fromState.name.includes(login)) {
+// 		  event.preventDefault();
+// 	  }
+//   });
+// });

@@ -1,7 +1,7 @@
 angular.module('trfApp')
 
-.factory('LoginService', ['$http', '$q', '$rootScope', 'AuthenticationService', 
-function($http, $q, $rootScope, AuthenticationService) {    
+.factory('LoginService', ['$http', '$q', '$rootScope', 'AuthenticationService', 'localStorageService',
+function($http, $q, $rootScope, AuthenticationService, localStorageService) {    
     var LoginService = {};
 
     LoginService.login = function(user) {
@@ -18,6 +18,10 @@ function($http, $q, $rootScope, AuthenticationService) {
     		});
     	return deferred.promise;
       }
+
+      LoginService.isLogin = function () {
+			return localStorageService.get("userInfo");
+		};
     return LoginService;
   }
 ]);
