@@ -20,6 +20,7 @@ app.post('/trf/api/forgetPasswordByQuestions', user.forgetPasswordByQuestions);
 app.post('/trf/api/forgetPasswordByMail', mail.forgetPasswordByMail);
 
 app.get('/trf/api/allTrips', trip.allTrips);
+app.get('/trf/api/addTrip', trip.addNewTrip);
 
 var server = app.listen(port, function () {
 	var host = server.address().address

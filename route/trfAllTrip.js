@@ -33,3 +33,46 @@ exports.allTrips = function(req, res){
             res.send({status : false});        
     });
 }
+
+//Add New Trip
+exports.addNewTrip = function(req, res){
+    var trip = req.body;   
+    var newTrip = new AllTrips({
+        userId : trip.userId,
+        name : trip.name,
+        userImage : [],
+        email : trip.email,
+        place : trip.place,
+        description : trip.desc,
+        placeImages : [],
+        tripType : trip.tripType,
+        startPoint : trip.startPoint,
+        endPoint : trip.endPoint,
+        totalMembers : [trip.userId],
+        like : [],
+        comment : [],
+        Cost : trip.cost,
+        startDate : trip.startDate,
+        endDate : trip.endDate,
+        dop : trip.dop,
+        dope : trip.dope,
+        report : [],
+        mobile : trip.mobile,
+        maxMembers : trip.maxMembers,
+        minMembers : trip.minMembers,
+        maxAge : trip.maxAge,
+        minAge : trip.minAge,
+        onlyFor : trip.onlyFor,
+        notes : trip.notes,
+        tripTitle : trip.tripTitle,
+        feedback : []
+        });  
+
+        newTrip.save(function(err, result){
+        if (err) return console.error(err);
+        if(result != null && result.length != 0){            
+            res.send({status : true, result});               
+        } else
+            res.send({status : false});        
+    });
+}
