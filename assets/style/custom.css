@@ -1681,7 +1681,7 @@ hr {
 
 .middlepane {
 	border:1px solid #cecece;
-    width: 54%;
+    width: 59%;
     height: 88%;
     float: left;
 	margin-top: 0.5%;
@@ -1694,7 +1694,7 @@ hr {
 
 .rightpane {
 	border:1px solid #cecece;
-	width: 24%;
+	width: 19%;
 	height: 88%;
 	position: relative;
 	float: right;
