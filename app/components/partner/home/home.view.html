@@ -52,8 +52,8 @@
                                 width="50"/>
                             </div> 
                             <!--<span class="badge">{{trip.like.length}}</span>-->
-                            <div class="center pull-right">
-                                <i class="fa fa-thumbs-o-up" ng-></i>
+                            <div class="center pull-right .margin-padding-5">
+                                <i class="fa fa-thumbs-o-up fa-2x"></i>&nbsp;&nbsp;<span class="badge">{{trip.like.length}}</span>
                             </div>
                             <div class="d-flex w-100 justify-content-between margin-30">                                        
                                 <small class="text-muted pull-right">{{trip.dayOP}} days ago</small>                                            
@@ -61,14 +61,13 @@
                                 <small class="text-muted pull-right"><b>Email Address: </b><i>{{trip.email}}</i></small>                                        
                             </div>
                             <h5 class="mb-1"><b>{{trip.place}}</b></h5>
-                            <h5 class="mb-1"><i>{{trip.tripTitle}}</i></h5>
+                            <h5 class="mb-1"><b>Title: </b><i>{{trip.tripTitle}}</i></h5>
                             <p class="mb-1">{{trip.description}}</p>
                             <hr width="80%">
                             <h6 class="mb-1"><b>Date Of Journy:</b> {{trip.startDate | date : "EEEE, MMMM d, y h:mm:ss a"}}</h6>
                             <h6 class="mb-1"><b>End Date Of Journy: </b>{{trip.endDate | date : "fullDate"}}</h6>
                             <h6 class="mb-1"><b>Contact Number: </b>{{trip.mobile}}</h6> 
-                            <div uib-collapse="!isCollapsed">
-                                <!--<div class="well well-lg">Some content</div>-->
+                            <div uib-collapse="!isCollapsed" style="transition: 2s;">
                                 <h6 class="mb-1"><b>Trip Type:</b> {{trip.tripType}}</h6>
                                 <h6 class="mb-1"><b>Journy Start Location: </b>{{trip.startPoint}}</h6>
                                 <h6 class="mb-1"><b>Journy End Location: </b>{{trip.endPoint}}</h6>
