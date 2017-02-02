@@ -1,21 +1,45 @@
-<div ng-if="terms != null">
-	<a ng-model="test" ng-click="addComment()">
+<div ng-if="comment != null">
+	<a ng-model="test" ng-click="commentPopUp()">
 		Comment
+	</a>
+</div>
+
+<div ng-if="message != null">
+	<a ng-model="test" ng-click="messagePopUp()">
+		Message
 	</a>
 </div>
 
 <script type="text/ng-template" id="comment.html">
 	<div class="modal-header">
-		<h3 class="modal-title">Make Comment</h3>
+		<h3 class="modal-title">Add Comment</h3>
 	</div>
-	<div class="modal-body">
+	<div class="modal-body-one-input">
 		<div class="row">
+			<br>
 			<div class="col-md-12 form-group">
-				<input class="form-control"  ng-model="CController.comment.text" placeholder="Comment"/>
+				<input class="form-control"  ng-model="CMController.comment" placeholder="Write Your Comment"/>
 			</div>			
 		</div>
 	</div>
 	<div class="modal-footer">
-		<button class="button button-3d button-dark button-slim nobottommargin pull-right" ng-click="CController.addComment()">Add Comment</button>
+		<button class="button button-3d button-dark button-slim nobottommargin pull-right" ng-click="CMController.addComment()">Add</button>
+	</div>
+</script>
+
+<script type="text/ng-template" id="message.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Send Message</h3>
+	</div>
+	<div class="modal-body-one-input">
+		<div class="row">
+			<br>
+			<div class="col-md-12 form-group">
+				<input class="form-control"  ng-model="MMController.message" placeholder="Write Your Message"/>
+			</div>			
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="button button-3d button-dark button-slim nobottommargin pull-right" ng-click="MMController.sendMessage()">Send</button>
 	</div>
 </script>

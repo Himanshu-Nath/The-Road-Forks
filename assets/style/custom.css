@@ -1345,6 +1345,12 @@ hr {
 	overflow: auto !important;
 }
 
+.modal-body-one-input {
+	font-size: 12px !important;
+	min-height: 50px;
+	overflow: auto !important;
+}
+
 .column-date {
 	width: 120px;
 }

@@ -3,10 +3,8 @@ angular.module('trfApp')
 	function() {
 		return {
 			scope: {
-				offer : '=',
-				category : '=',
-				project : '@projectId',
-				terms : '@termsConditions'
+				comment : '=',
+				message : '='
 			},
 			restrict : "E",
 			templateUrl : 'app/shared/directive/modalPopUp.view.html',
@@ -14,13 +12,19 @@ angular.module('trfApp')
 			// This controller is for modalPopUp 
 			controller: function ($scope, $element, $attrs, $location, $uibModal) {
 				
-				$scope.createComment = function(){	
+				$scope.commentPopUp = function(){	
 					$uibModal.open({
-						controller : 'CommentController as CController',
+						controller : 'CommentModalController as CMController',
 						templateUrl : 'comment.html'
 					})
-				}//end of terms and condition
-				
+				}
+
+				$scope.messagePopUp = function(){	
+					$uibModal.open({
+						controller : 'MessageModalController as MMController',
+						templateUrl : 'message.html'
+					})
+				}				
 			}
 		}
 	}

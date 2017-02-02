@@ -1,14 +1,14 @@
 angular.module('trfApp')
 
-.controller('CommentModalController', ['$uibModalInstance', 'ModalPopUpService',
+.controller('MessageModalController', ['$uibModalInstance', 'ModalPopUpService',
 	function($uibModalInstance, ModalPopUpService) {
 	var vm = this;
 
 	/**
 	 * Request create comment
 	 */
-	vm.addComment= function() {
-		ModalPopUpService.addComment(vm.comment).then(
+	vm.sendMessage= function() {
+		ModalPopUpService.addComment(vm.message).then(
 				function(response) {
 					console.log("resource created")
 				}, function(error) {});

@@ -7,7 +7,7 @@ angular.module('trfApp')
     var oneDay = 24*60*60*1000;
     var firstDate = new Date();
     vm.imageURL = URL.profile_images;
-    var loginUserInfo = localStorageService.get('userInfo');
+    vm.loginUserInfo = localStorageService.get('userInfo');
 
     if(ConstantService.getSessionStatus()){     
       PartnerHomeService.getAllTrips(vm.user)
