@@ -6,5 +6,6 @@ angular.module('trfApp', ['ui.router', 'LocalStorageModule', 'ui.bootstrap', 'ng
 })
 
 .constant('URL', {
-	"profile_images" : "http://localhost:3001/uploads/profilePics/"
+	"profile_images" : "http://localhost:3001/uploads/profilePics/",
+	"logo_images" : "http://localhost:3001/assets/images/"
 });

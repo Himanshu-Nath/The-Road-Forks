@@ -4,7 +4,8 @@ angular.module('trfApp')
 		return {
 			scope: {
 				comment : '=',
-				message : '='
+				message : '=',
+				join : '='
 			},
 			restrict : "E",
 			templateUrl : 'app/shared/directive/modalPopUp.view.html',
@@ -24,8 +25,15 @@ angular.module('trfApp')
 						controller : 'MessageModalController as MMController',
 						templateUrl : 'message.html'
 					})
-				}				
+				}	
+
+				$scope.joinTripPopUp = function(){	
+					$uibModal.open({
+						controller : 'JoinTripModalController as JTMController',
+						templateUrl : 'joinTrip.html'
+					})
+				}			
 			}
 		}
 	}
-	])
+])

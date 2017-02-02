@@ -1,13 +1,16 @@
 <div ng-if="comment != null">
-	<a ng-model="test" ng-click="commentPopUp()">
-		Comment
-	</a>
+	<i class="fa fa-comments-o fa-lg" data-placement="top" title="Comment"
+		onmouseenter="$(this).tooltip('show')" ng-click="commentPopUp()"/>
 </div>
 
 <div ng-if="message != null">
-	<a ng-model="test" ng-click="messagePopUp()">
-		Message
-	</a>
+	<i class="fa fa-envelope-o fa-lg" ng-click="messagePopUp()" data-placement="top" title="Message"
+		onmouseenter="$(this).tooltip('show')"/>
+</div>
+
+<div ng-if="join != null">
+	<i class="fa fa-heart-o fa-lg"  ng-click="joinTripPopUp()" data-placement="top" title="Join Trip"
+		onmouseenter="$(this).tooltip('show')"/>	
 </div>
 
 <script type="text/ng-template" id="comment.html">
@@ -41,5 +44,39 @@
 	</div>
 	<div class="modal-footer">
 		<button class="button button-3d button-dark button-slim nobottommargin pull-right" ng-click="MMController.sendMessage()">Send</button>
+	</div>
+</script>
+
+<script type="text/ng-template" id="joinTrip.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Registration Form For Trip Join</h3>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<br>
+			<div class="col-md-12 form-group">
+				<input class="form-control"  ng-model="JTMController.join.name" placeholder="Write Your Name"/>
+			</div>
+			<div class="col-md-12 form-group">
+				<input class="form-control"  ng-model="JTMController.join.email" placeholder="Write Your Email"/>
+			</div>
+			<div class="col-md-12 form-group">
+				<input class="form-control"  ng-model="JTMController.join.dob" placeholder="Write Your Date Of Birth"/>
+			</div>	
+			<div class="col-md-12 form-group">
+				<label class="radio-inline">
+					<input type="radio" ng-model="JTMController.join.gender" value="Male">Male
+				</label>
+				<label class="radio-inline">
+					<input type="radio" ng-model="JTMController.join.gender" value="Female">Female
+				</label>
+			</div>	
+			<div class="col-md-12 form-group">
+				<input class="form-control"  ng-model="JTMController.join.mobile" placeholder="Write Your Mobile"/>
+			</div>	
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="button button-3d button-dark button-slim nobottommargin pull-right" ng-click="JTMController.joinTrip()">Join</button>
 	</div>
 </script>

@@ -1,14 +1,11 @@
 angular.module('trfApp')
 
-.controller('MessageModalController', ['$uibModalInstance', 'ModalPopUpService',
+.controller('JoinTripModalController', ['$uibModalInstance', 'ModalPopUpService',
 	function($uibModalInstance, ModalPopUpService) {
 	var vm = this;
 
-	/**
-	 * Request create comment
-	 */
-	vm.sendMessage= function() {
-		ModalPopUpService.addComment(vm.message).then(
+	vm.joinTrip= function() {
+		ModalPopUpService.joinTrip(vm.join).then(
 				function(response) {
 					console.log("resource created")
 				}, function(error) {});
