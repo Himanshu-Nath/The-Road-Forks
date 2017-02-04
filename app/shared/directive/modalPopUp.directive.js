@@ -5,7 +5,8 @@ angular.module('trfApp')
 			scope: {
 				comment : '=',
 				message : '=',
-				join : '='
+				join : '=',
+				feed : '='
 			},
 			restrict : "E",
 			templateUrl : 'app/shared/directive/modalPopUp.view.html',
@@ -31,6 +32,13 @@ angular.module('trfApp')
 					$uibModal.open({
 						controller : 'JoinTripModalController as JTMController',
 						templateUrl : 'joinTrip.html'
+					})
+				}
+
+				$scope.feedPopUp = function(){	
+					$uibModal.open({
+						controller : 'FeedModalController as FMController',
+						templateUrl : 'feed.html'
 					})
 				}			
 			}

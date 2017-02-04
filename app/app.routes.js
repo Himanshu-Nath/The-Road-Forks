@@ -42,6 +42,18 @@ angular.module('trfApp')
           url : '/home',
           templateUrl : 'app/components/partner/home/home.view.html',
           authenticate : true
+        })
+
+        .state('client.home.post', {
+          url : '/post',
+          templateUrl : 'app/components/partner/post/post.view.html',
+          authenticate : true
+        })
+
+        .state('client.home.newPost', {
+          url : '/newPost',
+          templateUrl : 'app/components/partner/newPost/newPost.view.html',
+          authenticate : true
         });
 
         $urlRouterProvider.otherwise('/login/signin');

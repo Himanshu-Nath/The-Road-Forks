@@ -2,7 +2,7 @@
     <div class="container-subhome">
         <div class="toppane">
             <div class="container-fluid center" style="background-color:#2156F3;color:#fff;height:110px;">                
-                <h3>Let's go on Off-Road or On-Road</h3>
+                <h3>Let's go to Off-Road or On-Road</h3>
                 <p>Some beautiful paths can't be discovered without getting lost.</p>
                 <p>The high road of grace will get you somewhere a whole lot faster then the freeway of spite.</p>
             </div>
@@ -13,11 +13,12 @@
                 <img src="http://www.thefamouspeople.com/profiles/images/robert-downey-jr--2.jpg"
                 class="img-circle profile-home" alt="Cinque Terre" width="55%" height="55%">
                 <h4>Himanshu Nath</h4>
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-12 center">
                     <ul class="nav nav-pills nav-stacked">
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Edit</a></li>
                         <li><a href="#">Your Posts</a></li>
+                        <li><a href="#">Add New Posts</a></li>
                         <hr width="80%">
                         <li><a href="#">Friends</a></li>
                         <li><a href="#">Invitations</a></li>
@@ -35,100 +36,12 @@
             </div>    
         </div>
         <div class="middlepane">
-            <div class="panel panel-default" style="margin: 5px;">
-                <div class="panel-heading">Share your thought of the Day</div>
-                <div class="panel-body">
-                    <div class="container-body">
-                        <div class="form-group"><br>
-                            <textarea class="form-control" rows="2" id="comment"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary col-sm-3" style="float: right; margin: 5px">Submit</button>
-                    </div>                        
-                </div>
-            </div>
-			<div class="row">
-				<div class="col-lg-12">
-					<ul class="list-group">								
-                        <li class="list-group-item list-group-item-action flex-column align-items-start margin-padding-5" ng-repeat="trip in PHController.allTrips"> 
-                            <div style="float: left;">
-                                <img ng-src="{{PHController.uploadURL}}{{trip.userImage}}" class="img-rounded"
-                                width="50"/>
-                            </div> 
-                            <!--<span class="badge">{{trip.like.length}}</span>-->
-                            <div class="center pull-right .margin-padding-5">
-                                <i class="fa fa-ban fa-2x" data-placement="left" title="Report"
-		                            onmouseenter="$(this).tooltip('show')" ng-click="PHController.reportPost(trip._id)"></i>&nbsp;&nbsp;
-                                <i class="fa fa-thumbs-o-up fa-2x" data-placement="top" title="Like"
-		                            onmouseenter="$(this).tooltip('show')" ng-click="PHController.likePost(trip._id)"></i>&nbsp;&nbsp;
-                                    <span class="badge">{{trip.like.length}}</span>
-                            </div>
-                            <div class="d-flex w-100 justify-content-between margin-30">                                        
-                                <small class="text-muted pull-right">{{trip.dayOP}} days ago</small>                                            
-                                <h4 class="mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{trip.name}}</b></h4>
-                                <small class="text-muted pull-right"><b>Email Address: </b><i>{{trip.email}}</i></small>                                        
-                            </div>
-                            <h5 class="mb-1"><b>{{trip.place}}</b></h5>
-                            <h5 class="mb-1"><b>Title: </b><i>{{trip.tripTitle}}</i></h5>
-                            <p class="mb-1">{{trip.description}}</p>
-                            <hr width="80%">
-                            <h6 class="mb-1"><b>Date Of Journy:</b> {{trip.startDate | date : "EEEE, MMMM d, y h:mm:ss a"}}</h6>
-                            <h6 class="mb-1"><b>End Date Of Journy: </b>{{trip.endDate | date : "fullDate"}}</h6>
-                            <h6 class="mb-1"><b>Contact Number: </b>{{trip.mobile}}</h6> 
-                            <div uib-collapse="!isCollapsed" style="transition: 2s;">
-                                <h6 class="mb-1"><b>Trip Type:</b> {{trip.tripType}}</h6>
-                                <h6 class="mb-1"><b>Journy Start Location: </b>{{trip.startPoint}}</h6>
-                                <h6 class="mb-1"><b>Journy End Location: </b>{{trip.endPoint}}</h6>
-                                <h6 class="mb-1"><b>Trip Cost: </b>{{trip.Cost}}</h6>
-                                <h6 class="mb-1"><b>Trip Only For: </b>{{trip.onlyFor}}</h6>
-                                <h6 class="mb-1"><b>Trip Notes: </b>{{trip.notes}}</h6>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-1"><b>Min Members: </b>{{trip.minMembers}}</h6>                                        
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-1"><b>Max Members: </b>{{trip.maxMembers}}</h6>
-                                    </div>                                
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-1"><b>Min Age: </b>{{trip.minAge}}</h6>                                        
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-1"><b>Max Age: </b>{{trip.maxAge}}</h6>
-                                    </div>                                
-                                </div>      
-                            </div>
-                            <hr width="80%">    
-                            <div class="row center bottommargin">
-                                <div class="col-sm-3">
-                                     <modal-pop-up comment="trip"></modal-pop-up>
-                                </div>
-                                <div class="col-sm-3">
-                                    <modal-pop-up message="trip"></modal-pop-up> 
-                                </div>
-                                <div class="col-sm-3">
-                                    <modal-pop-up join="trip"></modal-pop-up>
-                                </div>
-                                <!--<div class="col-sm-3">
-                                    <i class="fa fa-ban fa-lg"> Report</i>
-                                </div>                             -->
-                                <div class="col-sm-3">
-                                    <i class="fa fa-bars fa-lg" ng-click="isCollapsed = !isCollapsed"> 
-                                        <span ng-if="!isCollapsed">More</span>
-                                        <span ng-if="isCollapsed">Less</span>
-                                    </i>
-                                </div>
-                            </div>                                                                           
-                        </li>                    
-					</ul>
-				</div>
-			</div>
+			<div ui-view></div>
         </div>
-    </div>
-    <div class="rightpane">
-        <div class="container-body">
-            <h4><b>Recent Chat</b></h4>
-                <div class="container">
+        <div class="rightpane">
+            <div class="container-body">
+                <h4><b>Recent Chat</b></h4>
+                <div class="container-body">
                     <h4><img ng-src="{{PHController.logoURL}}online.png" width="10"/> Amit Kumar</h4>
                     <h4><img ng-src="{{PHController.logoURL}}online.png" width="10"/> Sumit Singh</h4>
                     <h4><img ng-src="{{PHController.logoURL}}online.png" width="10"/> Aman Prakash</h4>
@@ -137,6 +50,7 @@
                     <h4><img ng-src="{{PHController.logoURL}}offline.png" width="10"/> Adam</h4>
                     <h4><img ng-src="{{PHController.logoURL}}offline.png" width="10"/> Ammy</h4>
                 </div>    
+            </div>
         </div>
     </div>
 </div>

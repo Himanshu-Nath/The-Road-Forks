@@ -1,0 +1,25 @@
+<div ng-controller="PartnerNewPostController as PNPController">
+    <div class="row">
+        <br>
+        <div class="col-lg-12">
+            <div class="well well">
+                <h2>Create New Trip Plan</h2>                        
+                <p>Sometimes the most scenic roads in life are the detours you didn't mean to take.</p>
+            </div>  
+            <div class="container-body">          
+                <form name="newTripForm" ng-submit="PNPController.newTripPlan()" role="form">
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.tripName.$dirty && newTripForm.tripName.$error.required }">
+                        <label for="tripName">Trip name</label>
+                        <input type="text" name="tripName" id="tripName" class="form-control" ng-model="PNPController.trip.tripName" required />
+                        <span ng-show="newTripForm.tripName.$dirty && newTripForm.tripName.$error.required" class="help-block">Trip name is required</span>
+                    </div>        
+                    <div class="form-actions">
+                        <button type="submit" ng-disabled="newTripForm.$invalid || PNPController.dataLoading" class="btn btn-primary">Create</button>
+                        <img ng-if="LController.dataLoading" src="assets/images/loader.gif"/>
+                        <a href="" ng-click="PNPController.back()" class="btn btn-link">Cancel</a>
+                    </div>
+                </form>
+            </div>   
+        </div>
+    </div>
+</div>
