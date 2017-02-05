@@ -29,6 +29,7 @@ var AllTripsSchema = new Schema({
     onlyFor : String,
     notes : String,
     tripTitle : String,
-    feedback : []
+    feedback : [],
+    tripStatus : String
 });
 mongoose.model('trfalltrip', AllTripsSchema);

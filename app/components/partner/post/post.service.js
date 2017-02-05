@@ -6,7 +6,7 @@ function($http, $q, $rootScope) {
 
      PartnerPostService.getAllTrips = function() {
         var deferred = $q.defer();
-        $http.get('/trf/api/allTrips')
+        $http.get('/trf/api/post/allTrips')
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);

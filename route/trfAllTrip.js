@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var dateFormat = require('dateformat'); 
 
-var Users = mongoose.model('trfuser');
-var RegisteredUsers = mongoose.model('trfregistereduser');
 var AllTrips = mongoose.model('trfalltrip');
 
 var imageName;
@@ -37,24 +35,25 @@ exports.allTrips = function(req, res){
 //Add New Trip
 exports.addNewTrip = function(req, res){
     var trip = req.body;   
+    imageName = 'file-trip' + '-' + Date.now() + '.' + trip.image.split('.')[trip.image.split('.').length -1];
     var newTrip = new AllTrips({
-        userId : trip.userId,
-        name : trip.name,
-        userImage : [],
+        userId : trip.id,
+        name : trip.fullName,
+        userImage : trip.image,
         email : trip.email,
-        place : trip.place,
-        description : trip.desc,
-        placeImages : [],
-        tripType : trip.tripType,
-        startPoint : trip.startPoint,
-        endPoint : trip.endPoint,
-        totalMembers : [trip.userId],
+        place : trip.placeName,
+        description : trip.description,
+        placeImages : [imageName],
+        tripType : trip.type,
+        startPoint : trip.startLocation,
+        endPoint : trip.endLocation,
+        totalMembers : [trip.id],
         like : [],
         comment : [],
-        Cost : trip.cost,
+        Cost : trip.tripCost,
         startDate : trip.startDate,
         endDate : trip.endDate,
-        dop : trip.dop,
+        dop : Date.now(),
         dope : trip.dope,
         report : [],
         mobile : trip.mobile,
@@ -62,10 +61,11 @@ exports.addNewTrip = function(req, res){
         minMembers : trip.minMembers,
         maxAge : trip.maxAge,
         minAge : trip.minAge,
-        onlyFor : trip.onlyFor,
+        onlyFor : trip.for,
         notes : trip.notes,
         tripTitle : trip.tripTitle,
-        feedback : []
+        feedback : [],
+        tripStatus : trip.tripStatus
         });  
 
         newTrip.save(function(err, result){
@@ -74,5 +74,16 @@ exports.addNewTrip = function(req, res){
             res.send({status : true, result});               
         } else
             res.send({status : false});        
+    });
+}
+
+//Upload Trip Images
+exports.addNewTripImage = function(req, res){
+    upload(req,res,function(err){
+        if(err){
+            res.json({status : false});
+            return;
+        } 
+        res.json({status : true});
     });
 }

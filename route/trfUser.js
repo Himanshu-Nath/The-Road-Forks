@@ -35,6 +35,7 @@ exports.registerUser = function(req, res){
         password : user.conformPassword,
         status : "Active",
         token : user.token,
+        mobile : user.mobile,
         lastActive : "",
         image : imageName,
         // image : "",

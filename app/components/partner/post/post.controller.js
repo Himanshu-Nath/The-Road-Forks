@@ -18,8 +18,7 @@ angular.module('trfApp')
                   var diffDays = Math.round(Math.abs((firstDate.getTime() - new Date(value.dop).getTime())/(oneDay)));
                   value.dayOP = diffDays;                  
                   vm.allTrips = response.data.result;
-                });
-                console.log(vm.allTrips);                  
+                });                
               } else {
                   swal("Fail", "Faild To Fetch Trips Details", "error");
               }

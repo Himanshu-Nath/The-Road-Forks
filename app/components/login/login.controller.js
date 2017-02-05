@@ -8,12 +8,16 @@ angular.module('trfApp')
     vm.login = function() {               
         LoginService.login(vm.user)
         	.then(function(response) {
-                console.log(response.data.result)
                 if (response.data.status) {
                     var userInfo = {
                         'token' : response.data.result.token,
                         'id' : response.data.result._id,
-                        'firstname' : response.data.result.firstName
+                        'firstname' : response.data.result.firstName,
+                        'lastname' : response.data.result.lastName,
+                        'image' : response.data.result.image,
+                        'email' : response.data.result.email,
+                        'username' : response.data.result.username,
+                        'mobile' : response.data.result.mobile
                     }
                     localStorageService.set('userInfo', userInfo);
                     $state.go('client.home.post');

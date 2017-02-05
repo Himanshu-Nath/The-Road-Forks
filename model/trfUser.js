@@ -8,6 +8,7 @@ var UserSchema = new Schema({
     password : String,
     status : String,
     token : String,
+    mobile : Number,
     lastActive : String,
     image : String,
     question1 : String,

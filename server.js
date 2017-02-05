@@ -19,8 +19,9 @@ app.post('/trf/api/forgetPasswordByQuestions', user.forgetPasswordByQuestions);
 
 app.post('/trf/api/forgetPasswordByMail', mail.forgetPasswordByMail);
 
-app.get('/trf/api/allTrips', trip.allTrips);
-app.get('/trf/api/addTrip', trip.addNewTrip);
+app.get('/trf/api/post/allTrips', trip.allTrips);
+app.post('/trf/api/post/newTrip', trip.addNewTrip);
+app.post('/trf/api/post/addPostImage', trip.addNewTripImage);
 
 var server = app.listen(port, function () {
 	var host = server.address().address

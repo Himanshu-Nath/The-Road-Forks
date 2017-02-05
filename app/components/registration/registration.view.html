@@ -28,6 +28,13 @@
             <span ng-show="form.conformPassword.$dirty && form.conformPassword.$error.required" class="help-block">Conform Password is required</span>
         </div>
         <span ng-if="RController.user.password != RController.user.conformPassword" class="help-block">Password Is Not Same</span>
+        <div class="form-group" ng-class="{ 'has-error': form.mobile.$dirty && form.mobile.$error.required }">
+            <label for="mobile">Mobile Number</label>
+            <input type="number" minlength="10" maxlength="10" name="mobile" id="mobile" class="form-control" ng-model="RController.user.mobile" required />
+            <span ng-show="form.mobile.$dirty && form.mobile.$error.required" class="help-block">Mobile number is required</span>
+            <span class="error" ng-show="form.mobile.$error.minlength" class="help-block">Minimum Number should be 10</span>                     
+            <span class="error" ng-show="form.mobile.$error.maxlength" class="help-block">Maximum cost should be 10</span>
+        </div>        
         <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
             <label for="username">Email</label>
             <input type="text" name="email" id="email" class="form-control" ng-model="RController.user.email" required />

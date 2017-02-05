@@ -7,15 +7,189 @@
                 <p>Sometimes the most scenic roads in life are the detours you didn't mean to take.</p>
             </div>  
             <div class="container-body">          
-                <form name="newTripForm" ng-submit="PNPController.newTripPlan()" role="form">
-                    <div class="form-group" ng-class="{ 'has-error': newTripForm.tripName.$dirty && newTripForm.tripName.$error.required }">
-                        <label for="tripName">Trip name</label>
-                        <input type="text" name="tripName" id="tripName" class="form-control" ng-model="PNPController.trip.tripName" required />
-                        <span ng-show="newTripForm.tripName.$dirty && newTripForm.tripName.$error.required" class="help-block">Trip name is required</span>
-                    </div>        
+                <form name="newTripForm" ng-submit="PNPController.newTripPlan()" role="form" class="form-horizontal">
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.placeName.$dirty && newTripForm.placeName.$error.required }">
+                        <label for="placeName">Trip name</label>
+                        <input type="text" name="placeName" id="placeName" class="form-control" ng-model="PNPController.trip.placeName" required />
+                        <span ng-show="newTripForm.placeName.$dirty && newTripForm.placeName.$error.required" class="help-block">Trip name is required</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.tripTitle.$dirty && newTripForm.tripTitle.$error.required }">
+                        <label for="tripTitle">Trip Title</label>
+                        <input type="text" name="tripTitle" id="tripTitle" class="form-control" ng-model="PNPController.trip.tripTitle" required />
+                        <span ng-show="newTripForm.tripTitle.$dirty && newTripForm.tripTitle.$error.required" class="help-block">Trip title is required</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.description.$dirty && newTripForm.description.$error.required }">
+                        <label for="description">Trip Description</label>
+                        <textarea  type="text" name="description" id="description" rows="6" class="form-control" ng-model="PNPController.trip.description" required />
+                        <span ng-show="newTripForm.description.$dirty && newTripForm.description.$error.required" class="help-block">Trip name is required</span>
+                    </div>   
+                    <div class="form-group">
+                        <label for="tripType">Trip Type </label>
+                        <br>									
+                        <div class="col-lg-3">
+                            <label class="m-t-15"> <input type="radio" ng-model="PNPController.trip.type"
+                                value="by_bike"> By Bike
+                            </label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="m-t-15"> <input type="radio" ng-model="PNPController.trip.type"
+                                value="by_car"> By Car 
+                            </label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="m-t-15"> <input type="radio" ng-model="PNPController.trip.type"
+                                value="trekking"> Trekking
+                            </label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="m-t-15"> <input type="radio" ng-model="PNPController.trip.type"
+                                value="cycling"> Cycling
+                            </label>
+                        </div>                                
+                    </div> 
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.startLocation.$dirty && newTripForm.startLocation.$error.required }">
+                        <label for="startLocation">Start Location</label>
+                        <input  type="text" name="startLocation" id="startLocation" class="form-control" ng-model="PNPController.trip.startLocation" required />                        
+                        <span ng-show="newTripForm.startLocation.$dirty && newTripForm.startLocation.$error.required" class="help-block">Trip Cost is required</span>
+                    </div>    
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.endLocation.$dirty && newTripForm.endLocation.$error.required }">
+                        <label for="endLocation">End Location</label>
+                        <input  type="text" name="endLocation" id="endLocation" class="form-control" ng-model="PNPController.trip.endLocation" required />                        
+                        <span ng-show="newTripForm.endLocation.$dirty && newTripForm.endLocation.$error.required" class="help-block">Trip Cost is required</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.tripCost.$dirty && newTripForm.tripCost.$error.required }">
+                        <label for="tripCost">Trip Cost</label>
+                        <input type="number" min="1" max="10000000" name="tripCost" id="tripCost" class="form-control" ng-model="PNPController.trip.tripCost" required />
+                        <span ng-show="newTripForm.tripCost.$dirty && newTripForm.tripCost.$error.required" class="help-block">Trip Cost is required</span>
+                        <span class="error" ng-show="newTripForm.tripCost.$error.min" class="help-block">Minimum cost should be 1</span>                     
+                        <span class="error" ng-show="newTripForm.tripCost.$error.max" class="help-block">Maximum cost should be 10000000</span>
+                    </div>
+                    <div class="form-ground col-lg-4">
+                        <p class="input-group">
+						<input type="text" class="form-control"
+							uib-datepicker-popup="{{format}}"
+							ng-model="PNPController.trip.startDate"
+							is-open="popup1.opened" datepicker-options="dateOptions"
+							ng-required="true" close-text="Close"
+							alt-input-formats="altInputFormats" placeholder="Journy Start Date"  readonly/>
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default form-control"
+								ng-click="open1()">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					    </p>
+                    </div>
+                    <div class="form-ground col-lg-4">
+                        <p class="input-group">
+						<input type="text" class="form-control"
+							uib-datepicker-popup="{{format}}"
+							ng-model="PNPController.trip.endDate"
+							is-open="popup2.opened" datepicker-options="dateOptions"
+							ng-required="true" close-text="Close"
+							alt-input-formats="altInputFormats" placeholder="Journy End Date"  readonly/>
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default form-control"
+								ng-click="open2()">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					    </p>
+                    </div>
+                    <div class="form-ground col-lg-4">
+                        <p class="input-group">
+						<input type="text" class="form-control"
+							uib-datepicker-popup="{{format}}"
+							ng-model="PNPController.trip.dope"
+							is-open="popup3.opened" datepicker-options="dateOptions"
+							ng-required="true" close-text="Close"
+							alt-input-formats="altInputFormats" placeholder="Post End Date"  readonly/>
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default form-control"
+								ng-click="open3()">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					    </p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.tripMinMembers.$dirty && newTripForm.tripMinMembers.$error.required }">
+                        <label for="tripMinMembers">Minimum Members</label>
+                        <input type="number" min="1" max="99" name="tripMinMembers" id="tripMinMembers" class="form-control" ng-model="PNPController.trip.minMembers" required />
+                        <span ng-show="newTripForm.tripMinMembers.$dirty && newTripForm.tripMinMembers.$error.required" class="help-block">Minimum Members is required</span>
+                        <span class="error" ng-show="newTripForm.tripMinMembers.$error.min" class="help-block">Minimum members should be 1</span>                     
+                        <span class="error" ng-show="newTripForm.tripMinMembers.$error.max" class="help-block">Maximum members should be 99</span>                           
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.tripMaxMembers.$dirty && newTripForm.tripMaxMembers.$error.required }">
+                        <label for="tripMaxMembers">Maximum Members</label>
+                        <input type="number" min="1" max="10000" name="tripMaxMembers" id="tripMaxMembers" class="form-control" ng-model="PNPController.trip.maxMembers" required />
+                        <span ng-show="newTripForm.tripMaxMembers.$dirty && newTripForm.tripMaxMembers.$error.required" class="help-block">Maximum Members is required</span>
+                        <span class="error" ng-show="newTripForm.tripMaxMembers.$error.min" class="help-block">Minimum members should be 1</span>
+                        <span class="error" ng-show="newTripForm.tripMaxMembers.$error.max" class="help-block">Minimum members should be 10000</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.tripMinAge.$dirty && newTripForm.tripMinAge.$error.required }">
+                        <label for="tripMinAge">Minimum Age</label>
+                        <input type="number" min="10" max="99" name="tripMinAge" id="tripMinAge" class="form-control" ng-model="PNPController.trip.minAge" required />
+                        <span ng-show="newTripForm.tripMinAge.$dirty && newTripForm.tripMinAge.$error.required" class="help-block">Minimum Members is required</span>
+                        <span class="error" ng-show="newTripForm.tripMinAge.$error.min" class="help-block">Minimum members age should be 10</span>                     
+                        <span class="error" ng-show="newTripForm.tripMinAge.$error.max" class="help-block">Maximum members should be 99</span>                           
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.tripMaxAge.$dirty && newTripForm.tripMaxAge.$error.required }">
+                        <label for="tripMaxAge">Maximum Age</label>
+                        <input type="number" min="1" max="99" name="tripMaxAge" id="tripMaxAge" class="form-control" ng-model="PNPController.trip.maxAge" required />
+                        <span ng-show="newTripForm.tripMaxAge.$dirty && newTripForm.tripMaxAge.$error.required" class="help-block">Maximum Members is required</span>
+                        <span class="error" ng-show="newTripForm.tripMaxAge.$error.min" class="help-block">Minimum members age should be 1</span>
+                        <span class="error" ng-show="newTripForm.tripMaxAge.$error.max" class="help-block">Minimum members age should be 99</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="tripType">Trip For </label>
+                        <br>									
+                        <div class="col-lg-4">
+                            <label class="m-t-15"> <input type="checkbox" ng-model="PNPController.trip.for"
+                                ng-true-value="'Men'" ng-false-value="'N'"> For Men
+                            </label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="m-t-15"> <input type="checkbox" ng-model="PNPController.trip.for"
+                                ng-true-value="'Women'" ng-false-value="'N'"> For Women
+                            </label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="m-t-15"> <input type="checkbox" ng-model="PNPController.trip.for"
+                                ng-true-value="'Both'" ng-false-value="'N'"> Both
+                            </label>
+                        </div>                               
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': newTripForm.notes.$dirty && newTripForm.notes.$error.required }">
+                        <label for="notes">Trip Notes</label>
+                        <textarea  type="text" name="notes" id="notes" rows="5" class="form-control" ng-model="PNPController.trip.notes" required />
+                        <span ng-show="newTripForm.notes.$dirty && newTripForm.notes.$error.required" class="help-block">Trip name is required</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="tripType">Active post</label>
+                        <br>									
+                        <div class="col-lg-6">
+                            <label class="m-t-15"> <input type="radio" ng-model="PNPController.trip.tripStatus"
+                                value="open"> Active Now
+                            </label>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="m-t-15"> <input type="radio" ng-model="PNPController.trip.tripStatus"
+                                value="close"> Active Later
+                            </label>
+                        </div>                              
+                    </div>
+                    <div class="form-group">
+                        <label>Location Image </label>
+                        <input type="file" ngf-select ng-model="PNPController.file" name="file" ngf-pattern="'image/*'" 
+                        accept="image/*" ngf-max-size="20MB" />
+                    </div>
+                    Image thumbnail: <img style="width:100px;" ngf-thumbnail="PNPController.file || '{{PNPController.logoURL}}image_logo.png'"/>
+                        <i ng-show="form.file.$error.required">*required</i><br>
+                        <i ng-show="form.file.$error.maxSize">File too large 
+                        {{RController.file.size / 1000000|number:1}}MB: max 20M</i>
                     <div class="form-actions">
                         <button type="submit" ng-disabled="newTripForm.$invalid || PNPController.dataLoading" class="btn btn-primary">Create</button>
-                        <img ng-if="LController.dataLoading" src="assets/images/loader.gif"/>
+                        
                         <a href="" ng-click="PNPController.back()" class="btn btn-link">Cancel</a>
                     </div>
                 </form>
