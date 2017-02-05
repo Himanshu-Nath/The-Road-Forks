@@ -1,7 +1,7 @@
 angular.module('trfApp')
 
-.controller('PartnerPostController', ['$state', 'localStorageService', 'PartnerPostService', '$window', 'QUERY_QUESTIONS', 'ConstantService', 'URL',
-  function($state, localStorageService, PartnerPostService, $window, QUERY_QUESTIONS, ConstantService, URL) {
+.controller('PartnerYourPostController', ['$state', 'localStorageService', 'PartnerYourPostService', '$window', 'QUERY_QUESTIONS', 'ConstantService', 'URL',
+  function($state, localStorageService, PartnerYourPostService, $window, QUERY_QUESTIONS, ConstantService, URL) {
 
     var vm = this;
     var oneDay = 24*60*60*1000;
@@ -10,18 +10,19 @@ angular.module('trfApp')
     vm.logoURL = URL.logo_images;
     vm.loginUserInfo = localStorageService.get('userInfo');
 
-    if(ConstantService.getSessionStatus()){     
-      PartnerPostService.getAllTrips()
+    if(ConstantService.getSessionStatus()){
+      PartnerYourPostService.myAllTrips(vm.loginUserInfo)
         .then(function(response) {
               if (response.data.result != undefined) {
                 angular.forEach(response.data.result, function(value, key) {
                   var diffDays = Math.round(Math.abs((firstDate.getTime() - new Date(value.dop).getTime())/(oneDay)));
-                  value.dayOP = diffDays;                  
-                  vm.allTrips = response.data.result;
+                  value.dayOP = diffDays;
+                  vm.myTrips = response.data.result;                  
                 });                
               } else {
                   swal("Fail", "Faild To Fetch Trips Details", "error");
               }
+              console.log(vm.myTrips);
         },
       function(error) {});
     }  else {
@@ -30,7 +31,7 @@ angular.module('trfApp')
 
     if(ConstantService.getSessionStatus()){
       vm.reportPost = function(id){     
-        PartnerPostService.reportPost(vm.user, id)
+        PartnerYourPostService.reportPost(vm.user, id)
           .then(function(response) {
                 if (response.data.result != undefined) {
                     swal("Success", "Report Posted Successfully", "success");
@@ -47,7 +48,7 @@ angular.module('trfApp')
 
     if(ConstantService.getSessionStatus()){
       vm.likePost = function(id){     
-        PartnerPostService.likePost(vm.user, id)
+        PartnerYourPostService.likePost(vm.user, id)
           .then(function(response) {
                 if (response.data.result != undefined) {
                     swal("Success", "Liked Successfully", "success");
@@ -64,7 +65,7 @@ angular.module('trfApp')
 
     if(ConstantService.getSessionStatus()){
       vm.newPost = function(id){     
-        $state.go('client.home.newPost');
+        $state.go('client.home.post');
       }
     }  else {
       $state.go('login.signin');

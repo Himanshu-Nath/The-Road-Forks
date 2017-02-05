@@ -21,6 +21,7 @@ app.post('/trf/api/forgetPasswordByMail', mail.forgetPasswordByMail);
 
 app.get('/trf/api/post/allTrips', trip.allTrips);
 app.post('/trf/api/post/newTrip', trip.addNewTrip);
+app.get('/trf/api/post/myTrip/:userId', trip.getMyTrip);
 app.post('/trf/api/post/addPostImage', trip.addNewTripImage);
 
 var server = app.listen(port, function () {

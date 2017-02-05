@@ -50,6 +50,12 @@ angular.module('trfApp')
           authenticate : true
         })
 
+        .state('client.home.yourPost', {
+          url : '/yourPost',
+          templateUrl : 'app/components/partner/yourPost/yourPost.view.html',
+          authenticate : true
+        })
+
         .state('client.home.newPost', {
           url : '/newPost',
           templateUrl : 'app/components/partner/newPost/newPost.view.html',

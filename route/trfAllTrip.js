@@ -32,6 +32,18 @@ exports.allTrips = function(req, res){
     });
 }
 
+//Get My Trips
+exports.getMyTrip = function(req, res){   
+    var id = req.params.userId; 
+    AllTrips.find({"userId": id}, function(err, result) {
+        if (err) return console.error(err);
+        if(result != null && result.length != 0){            
+            res.send({status : true, result});               
+        } else
+            res.send({status : false});        
+    });
+}
+
 //Add New Trip
 exports.addNewTrip = function(req, res){
     var trip = req.body;   

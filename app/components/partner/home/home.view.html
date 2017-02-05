@@ -10,14 +10,14 @@
         <div class="leftpane">
             <div class = "center">
                 <br>
-                <img src="http://www.thefamouspeople.com/profiles/images/robert-downey-jr--2.jpg"
+                <img src="{{PHController.uploadURL}}{{PHController.loginUserInfo.image}}"
                 class="img-circle profile-home" alt="Cinque Terre" width="55%" height="55%">
-                <h4>Himanshu Nath</h4>
+                <h3><b>{{PHController.loginUserInfo.firstname}} {{PHController.loginUserInfo.lastname}}</b></h3>
                 <div class="col-md-12 center">
                     <ul class="nav nav-pills nav-stacked">
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Edit</a></li>
-                        <li><a href="#">Your Posts</a></li>
+                        <li><a ui-sref="client.home.yourPost">Your Posts</a></li>
                         <li><a href="#">Add New Posts</a></li>
                         <hr width="80%">
                         <li><a href="#">Friends</a></li>
