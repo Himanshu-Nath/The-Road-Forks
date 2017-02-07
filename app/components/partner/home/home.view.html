@@ -15,10 +15,11 @@
                 <h3><b>{{PHController.loginUserInfo.firstname}} {{PHController.loginUserInfo.lastname}}</b></h3>
                 <div class="col-md-12 center">
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">Profile</a></li>
+                        <li ><a href="#">Profile</a></li>
                         <li><a href="#">Edit</a></li>
-                        <li><a ui-sref="client.home.yourPost">Your Posts</a></li>
-                        <li><a href="#">Add New Posts</a></li>
+                        <li ng-class="{ active: isActive('/client/home/yourPost')}"><a ui-sref="client.home.yourPost">Your Posts</a></li>
+                        <li ng-class="{ active: isActive('/client/home/newPost')}"><a ui-sref="client.home.newPost">Add Posts</a></li>
+                        <li ng-class="{ active: isActive('/client/home/updatePost')}"><a ui-sref="client.home.updatePost">Update Posts</a></li>
                         <hr width="80%">
                         <li><a href="#">Friends</a></li>
                         <li><a href="#">Invitations</a></li>

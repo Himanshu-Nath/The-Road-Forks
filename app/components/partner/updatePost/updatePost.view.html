@@ -1,0 +1,214 @@
+<div ng-controller="PartnerUpdatePostController as PUPController">
+    <div class="row">
+        <br>
+        <div class="col-lg-12">
+            <div class="well well">
+                <h2>Update Posted Trips </h2>  
+                <p>A journey is best measured in friends, rather than miles.</p>
+            </div>
+            <div class="list-group">								
+                <a class="list-group-item list-group-item-action flex-column align-items-start margin-padding-5"
+                ng-repeat="trip in PUPController.myTrips"> 
+                    <div class="col-sm-9">
+                        <h4><b>{{trip.place}}</b>: <small>{{trip.tripTitle}}</small></h4>
+                    </div>                         
+                    <button type="button" class="btn btn-success" ng-click="PUPController.UpdateCollapsed=!PUPController.UpdateCollapsed; PUPController.clickedTrip=trip">Edit</button>
+                    <button type="button" class="btn btn-warning" data-ng-click="PUPController.deletePost(trip._id)">Delete</button>
+                </a>                    
+            </div>
+            <div ng-show="PUPController.UpdateCollapsed">
+            <div class="well well-sm">
+                <div class="container-body">          
+                <form name="editTripForm" ng-submit="PUPController.newTripPlan()" role="form" class="form-horizontal">
+                    <div class="form-group" ng-class="{ 'has-error': editTripForm.placeName.$dirty && editTripForm.placeName.$error.required }">
+                        <label for="placeName">Trip name</label>
+                        <input type="text" name="placeName" id="placeName" class="form-control" ng-model="PUPController.clickedTrip.place" required />
+                        <span ng-show="editTripForm.placeName.$dirty && editTripForm.placeName.$error.required" class="help-block">Trip name is required</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': editTripForm.tripTitle.$dirty && editTripForm.tripTitle.$error.required }">
+                        <label for="tripTitle">Trip Title</label>
+                        <input type="text" name="tripTitle" id="tripTitle" class="form-control" ng-model="PUPController.clickedTrip.tripTitle" required />
+                        <span ng-show="editTripForm.tripTitle.$dirty && editTripForm.tripTitle.$error.required" class="help-block">Trip title is required</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': editTripForm.description.$dirty && editTripForm.description.$error.required }">
+                        <label for="description">Trip Description</label>
+                        <textarea  type="text" name="description" id="description" rows="6" class="form-control" ng-model="PUPController.clickedTrip.description" required />
+                        <span ng-show="editTripForm.description.$dirty && editTripForm.description.$error.required" class="help-block">Trip name is required</span>
+                    </div>   
+                    <div class="form-group">
+                        <label for="tripType">Trip Type </label>
+                        <br>									
+                        <div class="col-lg-3">
+                            <label class="m-t-15"> <input type="radio" ng-model="PUPController.clickedTrip.tripType"
+                                value="by_bike"> By Bike
+                            </label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="m-t-15"> <input type="radio" ng-model="PUPController.clickedTrip.tripType"
+                                value="by_car"> By Car 
+                            </label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="m-t-15"> <input type="radio" ng-model="PUPController.clickedTrip.tripType"
+                                value="trekking"> Trekking
+                            </label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="m-t-15"> <input type="radio" ng-model="PUPController.clickedTrip.tripType"
+                                value="cycling"> Cycling
+                            </label>
+                        </div>                                
+                    </div> 
+                    <div class="form-group" ng-class="{ 'has-error': editTripForm.startLocation.$dirty && editTripForm.startLocation.$error.required }">
+                        <label for="startLocation">Start Location</label>
+                        <input  type="text" name="startLocation" id="startLocation" class="form-control" ng-model="PUPController.clickedTrip.startPoint" required />                        
+                        <span ng-show="editTripForm.startLocation.$dirty && editTripForm.startLocation.$error.required" class="help-block">Trip Cost is required</span>
+                    </div>    
+                    <div class="form-group" ng-class="{ 'has-error': editTripForm.endLocation.$dirty && editTripForm.endLocation.$error.required }">
+                        <label for="endLocation">End Location</label>
+                        <input  type="text" name="endLocation" id="endLocation" class="form-control" ng-model="PUPController.clickedTrip.endPoint" required />                        
+                        <span ng-show="editTripForm.endLocation.$dirty && editTripForm.endLocation.$error.required" class="help-block">Trip Cost is required</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': editTripForm.tripCost.$dirty && editTripForm.tripCost.$error.required }">
+                        <label for="tripCost">Trip Cost</label>
+                        <input type="number" min="1" max="10000000" name="tripCost" id="tripCost" class="form-control" ng-model="PUPController.clickedTrip.Cost" required />
+                        <span ng-show="editTripForm.tripCost.$dirty && editTripForm.tripCost.$error.required" class="help-block">Trip Cost is required</span>
+                        <span class="error" ng-show="editTripForm.tripCost.$error.min" class="help-block">Minimum cost should be 1</span>                     
+                        <span class="error" ng-show="editTripForm.tripCost.$error.max" class="help-block">Maximum cost should be 10000000</span>
+                    </div>
+                    <div class="form-ground col-lg-4">
+                        <p class="input-group">
+						<input type="text" class="form-control"
+							uib-datepicker-popup="{{format}}"
+							ng-model="PUPController.clickedTrip.dayStartDate"
+							is-open="popup1.opened" datepicker-options="dateOptions"
+							ng-required="true" close-text="Close"
+							alt-input-formats="altInputFormats" placeholder="Journy Start Date"/>
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default form-control"
+								ng-click="open1()">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					    </p>
+                    </div>
+                    <div class="form-ground col-lg-4">
+                        <p class="input-group">
+						<input type="text" class="form-control"
+							uib-datepicker-popup="{{format}}"
+							ng-model="PUPController.clickedTrip.dayEndDate"
+							is-open="popup2.opened" datepicker-options="dateOptions"
+							ng-required="true" close-text="Close"
+							alt-input-formats="altInputFormats" placeholder="Journy End Date"/>
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default form-control"
+								ng-click="open2()">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					    </p>
+                    </div>
+                    <div class="form-ground col-lg-4">
+                        <p class="input-group">
+						<input type="text" class="form-control"
+							uib-datepicker-popup="{{format}}"
+							ng-model="PUPController.clickedTrip.dayDateOfPostEnd"
+							is-open="popup3.opened" datepicker-options="dateOptions"
+							ng-required="true" close-text="Close"
+							alt-input-formats="altInputFormats" placeholder="Post End Date"/>
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default form-control"
+								ng-click="open3()">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					    </p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': editTripForm.tripMinMembers.$dirty && editTripForm.tripMinMembers.$error.required }">
+                        <label for="tripMinMembers">Minimum Members</label>
+                        <input type="number" min="1" max="99" name="tripMinMembers" id="tripMinMembers" class="form-control" ng-model="PUPController.clickedTrip.minMembers" required />
+                        <span ng-show="editTripForm.tripMinMembers.$dirty && editTripForm.tripMinMembers.$error.required" class="help-block">Minimum Members is required</span>
+                        <span class="error" ng-show="editTripForm.tripMinMembers.$error.min" class="help-block">Minimum members should be 1</span>                     
+                        <span class="error" ng-show="editTripForm.tripMinMembers.$error.max" class="help-block">Maximum members should be 99</span>                           
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': editTripForm.tripMaxMembers.$dirty && editTripForm.tripMaxMembers.$error.required }">
+                        <label for="tripMaxMembers">Maximum Members</label>
+                        <input type="number" min="1" max="10000" name="tripMaxMembers" id="tripMaxMembers" class="form-control" ng-model="PUPController.clickedTrip.maxMembers" required />
+                        <span ng-show="editTripForm.tripMaxMembers.$dirty && editTripForm.tripMaxMembers.$error.required" class="help-block">Maximum Members is required</span>
+                        <span class="error" ng-show="editTripForm.tripMaxMembers.$error.min" class="help-block">Minimum members should be 1</span>
+                        <span class="error" ng-show="editTripForm.tripMaxMembers.$error.max" class="help-block">Minimum members should be 10000</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': editTripForm.tripMinAge.$dirty && editTripForm.tripMinAge.$error.required }">
+                        <label for="tripMinAge">Minimum Age</label>
+                        <input type="number" min="10" max="99" name="tripMinAge" id="tripMinAge" class="form-control" ng-model="PUPController.clickedTrip.minAge" required />
+                        <span ng-show="editTripForm.tripMinAge.$dirty && editTripForm.tripMinAge.$error.required" class="help-block">Minimum Members is required</span>
+                        <span class="error" ng-show="editTripForm.tripMinAge.$error.min" class="help-block">Minimum members age should be 10</span>                     
+                        <span class="error" ng-show="editTripForm.tripMinAge.$error.max" class="help-block">Maximum members should be 99</span>                           
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': editTripForm.tripMaxAge.$dirty && editTripForm.tripMaxAge.$error.required }">
+                        <label for="tripMaxAge">Maximum Age</label>
+                        <input type="number" min="1" max="99" name="tripMaxAge" id="tripMaxAge" class="form-control" ng-model="PUPController.clickedTrip.maxAge" required />
+                        <span ng-show="editTripForm.tripMaxAge.$dirty && editTripForm.tripMaxAge.$error.required" class="help-block">Maximum Members is required</span>
+                        <span class="error" ng-show="editTripForm.tripMaxAge.$error.min" class="help-block">Minimum members age should be 1</span>
+                        <span class="error" ng-show="editTripForm.tripMaxAge.$error.max" class="help-block">Minimum members age should be 99</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="tripType">Trip For </label>
+                        <br>									
+                        <div class="col-lg-4">
+                            <label class="m-t-15"> <input type="checkbox" ng-model="PUPController.clickedTrip.onlyFor"
+                                ng-true-value="'Men'" ng-false-value="'N'"> For Men
+                            </label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="m-t-15"> <input type="checkbox" ng-model="PUPController.clickedTrip.onlyFor"
+                                ng-true-value="'Women'" ng-false-value="'N'"> For Women
+                            </label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="m-t-15"> <input type="checkbox" ng-model="PUPController.clickedTrip.onlyFor"
+                                ng-true-value="'Both'" ng-false-value="'N'"> Both
+                            </label>
+                        </div>                               
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': editTripForm.notes.$dirty && editTripForm.notes.$error.required }">
+                        <label for="notes">Trip Notes</label>
+                        <textarea  type="text" name="notes" id="notes" rows="5" class="form-control" ng-model="PUPController.clickedTrip.notes" required />
+                        <span ng-show="editTripForm.notes.$dirty && editTripForm.notes.$error.required" class="help-block">Trip name is required</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="tripType">Active post</label>
+                        <br>									
+                        <div class="col-lg-6">
+                            <label class="m-t-15"> <input type="radio" ng-model="PUPController.clickedTrip.tripStatus"
+                                value="open"> Active Now
+                            </label>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="m-t-15"> <input type="radio" ng-model="PUPController.clickedTrip.tripStatus"
+                                value="close"> Active Later
+                            </label>
+                        </div>                              
+                    </div>
+                    <div class="form-group">
+                        <label>Location Image </label>
+                        <input type="file" ngf-select ng-model="PUPController.file" name="file" ngf-pattern="'image/*'" 
+                        accept="image/*" ngf-max-size="20MB" />
+                    </div>
+                    Image thumbnail: <img style="width:100px;" ngf-thumbnail="PUPController.file || PUPController.clickedTrip.tripImage || '{{PUPController.clickedTrip.tripImage}}'"/>
+                        <i ng-show="editTripForm.file.$error.required">*required</i><br>
+                        <i ng-show="editTripForm.file.$error.maxSize">File too large 
+                        {{PUPController.file.size / 1000000|number:1}}MB: max 20M</i>
+                    <div class="form-actions">
+                        <button type="submit" ng-disabled="editTripForm.$invalid || PUPController.dataLoading" class="btn btn-primary">Update</button>
+                        
+                        <a ng-click="PUPController.UpdateCollapsed = !PUPController.UpdateCollapsed" class="btn btn-link">Hide</a>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+    </div>
+</div>

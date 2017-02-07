@@ -13,6 +13,11 @@
                                 <img ng-src="{{PYPController.uploadURL}}{{trip.userImage}}" class="img-rounded"
                                 width="50"/>
                             </div>
+                            <div class="center pull-right .margin-padding-5">
+                                <span class="badge" data-placement="left" title="Click to change post status"
+		                            onmouseenter="$(this).tooltip('show')" ng-click="PYPController.changePostStatus(trip.tripStatus, trip._id)">
+                                    {{trip.tripStatus | uppercase}}</span>
+                            </div>
                             <div class="d-flex w-100 justify-content-between margin-30">                                        
                                 <small class="text-muted pull-right">{{trip.dayOP}} days ago</small>                                            
                                 <h4 class="mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{trip.name}}</b></h4>
@@ -59,11 +64,7 @@
                                     <i class="fa fa-thumbs-o-up fa-lg" data-placement="top" title="{{trip.like.length}} Likes"
 		                            onmouseenter="$(this).tooltip('show')" ng-click="collapsedLike=!collapsedLike"></i>
                                 </div>
-                                <div class="col-sm-3" ng-if="trip.tripStatus == 'open'">
-                                    <i class="fa fa-ban fa-lg" data-placement="top" title="{{trip.report.length}} Repots"
-		                            onmouseenter="$(this).tooltip('show')" ng-click="collapsedReport=!collapsedReport"></i>
-                                </div>
-                                <div class="col-sm-3" ng-if="trip.tripStatus == 'close'">
+                                <div class="col-sm-3">
                                     <i class="fa fa-rss fa-lg" data-placement="top" title="{{trip.feedback.length}} Feedback"
 		                            onmouseenter="$(this).tooltip('show')" ng-click="collapsedFeedBack=!collapsedFeedback"></i>
                                 </div> 
@@ -84,12 +85,6 @@
                                 <ul ng-show="collapsedLike" class="list-group well well-sm nav-listscroll">
                                     <li class="list-group-item disabled">Likes:</li>
                                     <li class="list-group-item" ng-repeat="like in trip.like">{{like}}</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <ul ng-show="collapsedReport" class="list-group well well-sm nav-listscroll">
-                                    <li class="list-group-item disabled">Reports:</li>
-                                    <li class="list-group-item" ng-repeat="report in trip.report">{{report}}</li>
                                 </ul>
                             </div>
                             <div>

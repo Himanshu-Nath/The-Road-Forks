@@ -22,7 +22,6 @@ angular.module('trfApp')
               } else {
                   swal("Fail", "Faild To Fetch Trips Details", "error");
               }
-              console.log(vm.myTrips);
         },
       function(error) {});
     }  else {
@@ -30,46 +29,27 @@ angular.module('trfApp')
     }
 
     if(ConstantService.getSessionStatus()){
-      vm.reportPost = function(id){     
-        PartnerYourPostService.reportPost(vm.user, id)
+        vm.changePostStatus = function(status,id) {
+          var postStatus = {};
+          if(status == "open"){
+            postStatus.status = "close";
+          } else {
+            postStatus.status = "open";
+          }
+          postStatus.id = id;
+        PartnerYourPostService.changePostStatus(postStatus)
           .then(function(response) {
                 if (response.data.result != undefined) {
-                    swal("Success", "Report Posted Successfully", "success");
-                  console.log(vm.allTrips);                  
+                  console.log("Post Status Changed");
                 } else {
-                    swal("Fail", "Report Posted Failed", "error");
+                    swal("Fail", "Faild To Fetch Trips Details", "error");
                 }
           },
         function(error) {});
-      }
-    }  else {
-      $state.go('login.signin');
-    } 
-
-    if(ConstantService.getSessionStatus()){
-      vm.likePost = function(id){     
-        PartnerYourPostService.likePost(vm.user, id)
-          .then(function(response) {
-                if (response.data.result != undefined) {
-                    swal("Success", "Liked Successfully", "success");
-                  console.log(vm.allTrips);                  
-                } else {
-                    swal("Fail", "Liked Failed", "error");
-                }
-          },
-        function(error) {});
-      }
-    }  else {
+      }  
+    }else {
       $state.go('login.signin');
     }
-
-    if(ConstantService.getSessionStatus()){
-      vm.newPost = function(id){     
-        $state.go('client.home.post');
-      }
-    }  else {
-      $state.go('login.signin');
-    } 
 
   }
 ]);

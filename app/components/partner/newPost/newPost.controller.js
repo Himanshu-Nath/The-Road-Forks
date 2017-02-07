@@ -7,10 +7,10 @@ angular.module('trfApp')
     vm.logoURL = URL.logo_images;
     vm.loginUserInfo = localStorageService.get('userInfo');
 
-    $scope.today = function() {
-		$scope.startDate = new Date();
-		$scope.endDate = new Date();
-		$scope.dope = new Date();
+  $scope.today = function() {
+  $scope.startDate = new Date();
+  $scope.endDate = new Date();
+  $scope.dope = new Date();
 	};
 	$scope.today();
 

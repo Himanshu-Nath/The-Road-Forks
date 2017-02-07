@@ -56,6 +56,12 @@ angular.module('trfApp')
           authenticate : true
         })
 
+        .state('client.home.updatePost', {
+          url : '/updatePost',
+          templateUrl : 'app/components/partner/updatePost/updatePost.view.html',
+          authenticate : true
+        })
+
         .state('client.home.newPost', {
           url : '/newPost',
           templateUrl : 'app/components/partner/newPost/newPost.view.html',

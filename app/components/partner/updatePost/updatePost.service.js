@@ -1,10 +1,10 @@
 angular.module('trfApp')
 
-.factory('PartnerYourPostService', ['$http', '$q', '$rootScope', 
+.factory('PartnerUpdatePostService', ['$http', '$q', '$rootScope', 
 function($http, $q, $rootScope) {    
-    var PartnerYourPostService = {};
+    var PartnerUpdatePostService = {};
 
-     PartnerYourPostService.myAllTrips = function(userInfo) {
+     PartnerUpdatePostService.myAllTrips = function(userInfo) {
         var deferred = $q.defer();
         $http.get('/trf/api/post/myTrip/'+userInfo.id)
           .then(function successCallback(response) {
@@ -18,9 +18,23 @@ function($http, $q, $rootScope) {
         return deferred.promise;
       }
 
-      PartnerYourPostService.changePostStatus = function(postStatus) {
+      PartnerUpdatePostService.saveUpdatedPost = function(editedTrip) {
         var deferred = $q.defer();
-        $http.post('/trf/api/post/status', postStatus)
+        $http.post('/trf/api/post/edit', editedTrip)
+          .then(function successCallback(response) {
+                  if(response.data.status == true) 
+                      deferred.resolve(response);
+                  else
+                      deferred.resolve(response);
+          }, function errorCallback(response) {
+            deferred.reject("Error");
+          });
+        return deferred.promise;
+      }
+
+      PartnerUpdatePostService.deletePost = function(id) {
+        var deferred = $q.defer();
+        $http.post('/trf/api/post/delete', id)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);
@@ -32,6 +46,6 @@ function($http, $q, $rootScope) {
         return deferred.promise;
       }
             
-    return PartnerYourPostService;
+    return PartnerUpdatePostService;
   }
 ]);
