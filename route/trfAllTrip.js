@@ -44,9 +44,41 @@ exports.getMyTrip = function(req, res){
     });
 }
 
+//Edit Trip
+exports.editTrip = function(req, res){   
+    var trip = req.body;
+    if(trip.placeImage != undefined)
+        imageName = 'file-trip' + '-' + Date.now() + '.' + trip.placeImage.split('.')[trip.placeImage.split('.').length -1];
+    else
+        imageName = trip.placeImages[0];    
+    AllTrips.update({"_id": trip._id}, {$set: {"place" : trip.place, "tripTitle" : trip.tripTitle, "description" : 
+        trip.description, "tripType" : trip.tripType, "startPoint" : trip.startPoint, "endPoint" : trip.endPoint,
+        "Cost" : trip.Cost, "startDate" : trip.dayStartDate, "endDate" : trip.dayEndDate, "dope" : trip.dayDateOfPostEnd, 
+        "minMembers" : trip.minMembers, "maxMembers" : trip.maxMembers, "minAge" : trip.minAge, "maxAge" : trip.maxAge,
+        "onlyFor" : trip.onlyFor, "notes" : trip.notes, "tripStatus" : trip.tripStatus, "placeImages": [imageName]}}, function(err, result) {
+            if (err) return console.error(err);
+            if(result != null && result.length != 0){            
+                res.send({status : true, result});               
+            } else
+                res.send({status : false});
+    });
+}
+
+//Delete Trip
+exports.deleteTrip = function(req, res){   
+    var postId = req.params.postId;
+    AllTrips.remove({"_id": postId}, function(err, result) {
+        if (err) return console.error(err);
+        if(result != null && result.length != 0){            
+            res.send({status : true, result});               
+        } else
+            res.send({status : false}); 
+    });    
+}
+
 //Add New Trip
 exports.addNewTrip = function(req, res){
-    var trip = req.body;   
+    var trip = req.body;
     imageName = 'file-trip' + '-' + Date.now() + '.' + trip.image.split('.')[trip.image.split('.').length -1];
     var newTrip = new AllTrips({
         userId : trip.id,

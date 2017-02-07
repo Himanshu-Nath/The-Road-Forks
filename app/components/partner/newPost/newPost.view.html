@@ -9,7 +9,7 @@
             <div class="container-body">          
                 <form name="newTripForm" ng-submit="PNPController.newTripPlan()" role="form" class="form-horizontal">
                     <div class="form-group" ng-class="{ 'has-error': newTripForm.placeName.$dirty && newTripForm.placeName.$error.required }">
-                        <label for="placeName">Trip name</label>
+                        <label for="placeName">Trip Place</label>
                         <input type="text" name="placeName" id="placeName" class="form-control" ng-model="PNPController.trip.placeName" required />
                         <span ng-show="newTripForm.placeName.$dirty && newTripForm.placeName.$error.required" class="help-block">Trip name is required</span>
                     </div>

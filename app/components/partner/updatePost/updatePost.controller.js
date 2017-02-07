@@ -1,7 +1,7 @@
 angular.module('trfApp')
 
-.controller('PartnerUpdatePostController', ['$scope' ,'$state', 'localStorageService', 'PartnerUpdatePostService', '$filter', 'QUERY_QUESTIONS', 'ConstantService', 'URL',
-  function($scope, $state, localStorageService, PartnerUpdatePostService, $filter, QUERY_QUESTIONS, ConstantService, URL) {
+.controller('PartnerUpdatePostController', ['$scope' ,'$state', 'localStorageService', 'PartnerUpdatePostService', '$filter', 'QUERY_QUESTIONS', 'ConstantService', 'URL', 'Upload',
+  function($scope, $state, localStorageService, PartnerUpdatePostService, $filter, QUERY_QUESTIONS, ConstantService, URL, Upload) {
 
     var vm = this;
     var oneDay = 24*60*60*1000;
@@ -94,13 +94,17 @@ angular.module('trfApp')
     }
 
     if(ConstantService.getSessionStatus()){
-        vm.saveUpdatedPost = function(editedTrip) {
-        PartnerUpdatePostService.saveUpdatedPost(editedTrip)
+        vm.updatePost = function(editedTrip) {
+          if(vm.file != undefined)
+            editedTrip.placeImage = vm.file.name;
+          console.log(editedTrip);
+        PartnerUpdatePostService.updatePost(editedTrip)
           .then(function(response) {
                 if (response.data.result != undefined) {
-                  console.log("Post Deleted Successfully");
+                    // swal("Success", "Trip Post Updated Successfully", "success"); 
+                    uploadImage(vm.file);
                 } else {
-                    swal("Fail", "Faild To Fetch Trips Details", "error");
+                    swal("Fail", "Faild To Update Trip Post", "error");
                 }
           },
         function(error) {});
@@ -114,15 +118,33 @@ angular.module('trfApp')
         PartnerUpdatePostService.deletePost(id)
           .then(function(response) {
                 if (response.data.result != undefined) {
-                  console.log("Post Deleted Successfully");
+                    swal("Success", "Post Deleted Successfully", "success");
+                    $state.go('client.home.updatePost');
                 } else {
-                    swal("Fail", "Faild To Fetch Trips Details", "error");
+                    swal("Fail", "Failed To Delete Post", "error");
                 }
           },
         function(error) {});
       }  
     }else {
       $state.go('login.signin');
+    }
+
+    var uploadImage = function (file) {
+        Upload.upload({
+            url: 'http://localhost:3001/trf/api/post/addPostImage',
+            data:{file:file}
+        }).then(function (resp) {
+            if(resp.data.status == true){
+                swal("Success", "Trip Post Updated Successfully", "success");
+                $state.go('client.home.updatePost');
+            } else {
+                swal("Fail", "Failed to add trip image", "error")
+            }
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+        });
     }
 
   }

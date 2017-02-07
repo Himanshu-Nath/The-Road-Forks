@@ -18,7 +18,7 @@ function($http, $q, $rootScope) {
         return deferred.promise;
       }
 
-      PartnerUpdatePostService.saveUpdatedPost = function(editedTrip) {
+      PartnerUpdatePostService.updatePost = function(editedTrip) {
         var deferred = $q.defer();
         $http.post('/trf/api/post/edit', editedTrip)
           .then(function successCallback(response) {
@@ -34,7 +34,7 @@ function($http, $q, $rootScope) {
 
       PartnerUpdatePostService.deletePost = function(id) {
         var deferred = $q.defer();
-        $http.post('/trf/api/post/delete', id)
+        $http.put('/trf/api/post/delete/'+id)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);

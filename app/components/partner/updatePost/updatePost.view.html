@@ -12,7 +12,7 @@
                     <div class="col-sm-9">
                         <h4><b>{{trip.place}}</b>: <small>{{trip.tripTitle}}</small></h4>
                     </div>                         
-                    <button type="button" class="btn btn-success" ng-click="PUPController.UpdateCollapsed=!PUPController.UpdateCollapsed; PUPController.clickedTrip=trip">Edit</button>
+                    <button type="button" class="btn btn-info" ng-click="PUPController.UpdateCollapsed=!PUPController.UpdateCollapsed; PUPController.clickedTrip=trip">Edit</button>
                     <button type="button" class="btn btn-warning" data-ng-click="PUPController.deletePost(trip._id)">Delete</button>
                 </a>                    
             </div>
@@ -21,7 +21,7 @@
                 <div class="container-body">          
                 <form name="editTripForm" ng-submit="PUPController.newTripPlan()" role="form" class="form-horizontal">
                     <div class="form-group" ng-class="{ 'has-error': editTripForm.placeName.$dirty && editTripForm.placeName.$error.required }">
-                        <label for="placeName">Trip name</label>
+                        <label for="placeName">Trip Place</label>
                         <input type="text" name="placeName" id="placeName" class="form-control" ng-model="PUPController.clickedTrip.place" required />
                         <span ng-show="editTripForm.placeName.$dirty && editTripForm.placeName.$error.required" class="help-block">Trip name is required</span>
                     </div>
@@ -77,6 +77,7 @@
                         <span class="error" ng-show="editTripForm.tripCost.$error.max" class="help-block">Maximum cost should be 10000000</span>
                     </div>
                     <div class="form-ground col-lg-4">
+                        <label for="tripCost">Start Date</label>
                         <p class="input-group">
 						<input type="text" class="form-control"
 							uib-datepicker-popup="{{format}}"
@@ -93,6 +94,7 @@
 					    </p>
                     </div>
                     <div class="form-ground col-lg-4">
+                        <label for="tripCost">End Date</label>
                         <p class="input-group">
 						<input type="text" class="form-control"
 							uib-datepicker-popup="{{format}}"
@@ -109,6 +111,7 @@
 					    </p>
                     </div>
                     <div class="form-ground col-lg-4">
+                        <label for="tripCost">Date of Post Ends</label>
                         <p class="input-group">
 						<input type="text" class="form-control"
 							uib-datepicker-popup="{{format}}"
@@ -200,8 +203,8 @@
                         <i ng-show="editTripForm.file.$error.maxSize">File too large 
                         {{PUPController.file.size / 1000000|number:1}}MB: max 20M</i>
                     <div class="form-actions">
-                        <button type="submit" ng-disabled="editTripForm.$invalid || PUPController.dataLoading" class="btn btn-primary">Update</button>
-                        
+                        <button type="submit" ng-disabled="editTripForm.$invalid || PUPController.dataLoading" class="btn btn-primary"
+                        data-ng-click="PUPController.updatePost(PUPController.clickedTrip)">Update</button>
                         <a ng-click="PUPController.UpdateCollapsed = !PUPController.UpdateCollapsed" class="btn btn-link">Hide</a>
                     </div>
                 </form>
