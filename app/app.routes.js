@@ -62,6 +62,12 @@ angular.module('trfApp')
           authenticate : true
         })
 
+        .state('client.home.findPost', {
+          url : '/findPost/:postId',
+          templateUrl : 'app/components/partner/findPost/findPost.view.html',
+          authenticate : true
+        })
+
         .state('client.home.newPost', {
           url : '/newPost',
           templateUrl : 'app/components/partner/newPost/newPost.view.html',

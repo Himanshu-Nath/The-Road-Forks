@@ -19,6 +19,8 @@ angular.module('trfApp')
                   value.dayOP = diffDays;
                   vm.myTrips = response.data.result;                  
                 });                
+              } else if(response.data.result == undefined) {
+                  swal("Oops! No Post Here", "Add New Post", "error");
               } else {
                   swal("Fail", "Faild To Fetch Trips Details", "error");
               }

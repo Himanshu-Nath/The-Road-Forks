@@ -1,0 +1,114 @@
+<style>
+.selected {
+  background-color: silver;
+}</style>
+<div ng-controller="FindYourPostController as FYPController">
+<div class="row">
+                <br>
+				<div class="col-lg-12">
+                    <div class="well well">
+                        <h2>Find Posted Trips </h2>  
+                        <p>The World is a book, and those who do not travel read only a page.</p>
+                    </div>
+                    <form class="form-horizontal" name="form" ng-submit="FYPController.findPlace(FYPController.find)" role="form">
+                        <div class="form-group" ng-class="{ 'has-error': form.location.$dirty && form.location.$error.required }">
+                        <label class="control-label col-sm-3" for="email">Trip Location:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="Enter your desired location to find..."
+                             id="location" name ="location" ng-model="FYPController.find.place" required>
+                             <span ng-show="form.location.$dirty && form.location.$error.required" class="help-block">Location is required</span>
+                        </div>
+                        </div>
+                        <div class="form-group">        
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" ng-disabled="form.$invalid" class="btn btn-info">Submit</button>
+                            <a href="" ng-click="FYPController.findCollapsed=!FYPController.findCollapsed; FYPController.eraseFind()" class="btn btn-link">Hide</a>                            
+                        </div>
+                        </div>
+                    </form>
+                    <div class="list-group">								
+                        <a class="list-group-item list-group-item-action flex-column align-items-start margin-padding-5"
+                        ng-repeat="findTrip in FYPController.searchedTrip" 
+                        ng-class="{selected : findTrip._id === FYPController.idSelectedVote}"
+                        ng-click="FYPController.findCollapsed=!FYPController.findCollapsed; FYPController.trip = findTrip; FYPController.setSelected(findTrip._id)"> 
+                            <div class="col-sm-9">
+                                <h4><b>{{findTrip.place}}</b>: <small>{{findTrip.tripTitle}}</small></h4>
+                            </div>                         
+                            <button type="button" class="btn btn-primary" data-ng-click="FYPController.joinTrip(findTrip._id)">Follow</button>
+                            <button type="button" class="btn btn-primary" data-ng-click="FYPController.reportTrip(findTrip._id)">Let Us Meet</button>
+                        </a>                    
+                    </div>							
+                        <div class="well well" uib-collapse="!FYPController.findCollapsed" style="transition: 2s;"> 
+                            <div style="float: left;">
+                                <img ng-src="{{FYPController.uploadURL}}{{FYPController.trip.userImage}}" class="img-rounded"
+                                width="50"/>
+                            </div>
+                            <div class="center pull-right .margin-padding-5">
+                                <i class="fa fa-ban fa-2x" data-placement="left" title="Report"
+		                            onmouseenter="$(this).tooltip('show')" ng-click="FYPController.reportPost(FYPController.trip._id)"></i>&nbsp;&nbsp;
+                                <i class="fa fa-thumbs-o-up fa-2x" data-placement="top" title="Like"
+		                            onmouseenter="$(this).tooltip('show')" ng-click="FYPController.likePost(FYPController.trip._id)"></i>&nbsp;&nbsp;
+                                    <span class="badge">{{FYPController.trip.like.length}}</span>
+                            </div>
+                            <div class="d-flex w-100 justify-content-between margin-30">                                        
+                                <small class="text-muted pull-right">{{FYPController.trip.dayOP}} days ago</small>                                            
+                                <h4 class="mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{FYPController.trip.name}}</b></h4>
+                                <small class="text-muted pull-right"><b>Email Address: </b><i>{{FYPController.trip.email}}</i></small>                                        
+                            </div>
+                            <h5 class="mb-1"><b>{{FYPController.trip.place}}</b></h5>
+                            <h5 class="mb-1"><b>Title: </b><i>{{FYPController.trip.tripTitle}}</i></h5>
+                            <p class="mb-1">{{FYPController.trip.description}}</p>
+                            <hr width="80%">
+                            <h6 class="mb-1"><b>Date Of Journy:</b> {{FYPController.trip.startDate | date : "EEEE, MMMM d, y h:mm:ss a"}}</h6>
+                            <h6 class="mb-1"><b>End Date Of Journy: </b>{{FYPController.trip.endDate | date : "fullDate"}}</h6>
+                            <h6 class="mb-1"><b>Contact Number: </b>{{FYPController.trip.mobile}}</h6> 
+                            <div uib-collapse="!isCollapsed" style="transition: 2s;">
+                                <h6 class="mb-1"><b>Trip Type:</b> {{FYPController.trip.tripType}}</h6>
+                                <h6 class="mb-1"><b>Journy Start Location: </b>{{FYPController.trip.startPoint}}</h6>
+                                <h6 class="mb-1"><b>Journy End Location: </b>{{FYPController.trip.endPoint}}</h6>
+                                <h6 class="mb-1"><b>Trip Cost: </b>{{FYPController.trip.Cost}}</h6>
+                                <h6 class="mb-1"><b>Trip Only For: </b>{{FYPController.trip.onlyFor}}</h6>
+                                <h6 class="mb-1"><b>Trip Notes: </b>{{FYPController.trip.notes}}</h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h6 class="mb-1"><b>Min Members: </b>{{FYPController.trip.minMembers}}</h6>                                        
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h6 class="mb-1"><b>Max Members: </b>{{FYPController.trip.maxMembers}}</h6>
+                                    </div>                                
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h6 class="mb-1"><b>Min Age: </b>{{FYPController.trip.minAge}}</h6>                                        
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h6 class="mb-1"><b>Max Age: </b>{{FYPController.trip.maxAge}}</h6>
+                                    </div>                                
+                                </div>      
+                            </div>
+                            <hr width="80%">    
+                            <div class="row center bottommargin">
+                                <div class="col-sm-3">
+                                     <modal-pop-up comment="FYPController.trip"></modal-pop-up>
+                                </div>
+                                <div class="col-sm-3">
+                                    <modal-pop-up message="FYPController.trip"></modal-pop-up> 
+                                </div>
+                                <div class="col-sm-3" ng-if="FYPController.trip.tripStatus == 'open'">
+                                    <modal-pop-up join="FYPController.trip"></modal-pop-up>
+                                </div>
+                                <div class="col-sm-3" ng-if="FYPController.trip.tripStatus == 'close'">
+                                    <modal-pop-up feed="FYPController.trip"></modal-pop-up>
+                                </div> 
+                                <div class="col-sm-3">
+                                    <i class="fa fa-bars fa-lg" ng-click="isCollapsed = !isCollapsed"> 
+                                        <span ng-if="!isCollapsed">More</span>
+                                        <span ng-if="isCollapsed">Less</span>
+                                    </i>
+                                </div>
+                            </div>                                                                              
+                        </div>
+				</div>
+			</div>
+        </div>
+</div>

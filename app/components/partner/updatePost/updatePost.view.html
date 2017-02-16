@@ -8,7 +8,8 @@
             </div>
             <div class="list-group">								
                 <a class="list-group-item list-group-item-action flex-column align-items-start margin-padding-5"
-                ng-repeat="trip in PUPController.myTrips"> 
+                ng-repeat="trip in PUPController.myTrips"
+                ng-click="PUPController.openPost(trip._id)"> 
                     <div class="col-sm-9">
                         <h4><b>{{trip.place}}</b>: <small>{{trip.tripTitle}}</small></h4>
                     </div>                         
@@ -211,7 +212,10 @@
             </div>
             </div>
         </div>
+        <div ng-show="PUPController.UpdateCollapsed">
+            <div class="well well-sm">
+            </div>
         </div>
-        
+        </div>        
     </div>
 </div>

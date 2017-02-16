@@ -44,6 +44,30 @@ exports.getMyTrip = function(req, res){
     });
 }
 
+//Find Trip
+exports.findTrip = function(req, res){   
+    var place = req.params.place;
+    AllTrips.find({"place": { $regex : new RegExp(place, "i") }}, function(err, result) {
+        if (err) return console.error(err);
+        if(result != null && result.length != 0){            
+            res.send({status : true, result});               
+        } else
+            res.send({status : false});        
+    });
+}
+
+//Find Trip By Id placeById
+exports.placeById = function(req, res){   
+    var placeId = req.params.placeId;
+    AllTrips.find({"_id": placeId}, function(err, result) {
+        if (err) return console.error(err);
+        if(result != null && result.length != 0){            
+            res.send({status : true, result});               
+        } else
+            res.send({status : false});        
+    });
+}
+
 //Edit Trip
 exports.editTrip = function(req, res){   
     var trip = req.body;

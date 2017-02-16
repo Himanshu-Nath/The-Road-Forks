@@ -83,10 +83,11 @@ angular.module('trfApp')
                   value.tripImage = vm.tripImageURL + value.placeImages;
                   vm.myTrips = response.data.result;
                 });                                
+              } else if(response.data.result == undefined) {
+                  swal("Their Is No Any Trip Post", "Try Again ! By Adding First Post", "error");
               } else {
                   swal("Fail", "Faild To Fetch Trips Details", "error");
               }
-              console.log(vm.myTrips);
         },
       function(error) {});
     }  else {
@@ -125,7 +126,11 @@ angular.module('trfApp')
                 }
           },
         function(error) {});
-      }  
+      }
+
+      vm.openPost = function(id) {
+        $state.go('client.home.findPost',{'postId':id});
+      }
     }else {
       $state.go('login.signin');
     }
