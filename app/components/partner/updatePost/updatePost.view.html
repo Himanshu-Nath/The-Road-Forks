@@ -1,21 +1,25 @@
 <div ng-controller="PartnerUpdatePostController as PUPController">
     <div class="row">
         <br>
-        <div class="col-lg-12">
+        <div class="col-lg-12" style="padding:15px">
             <div class="well well">
                 <h2>Update Posted Trips </h2>  
                 <p>A journey is best measured in friends, rather than miles.</p>
             </div>
-            <div class="list-group">								
-                <a class="list-group-item list-group-item-action flex-column align-items-start margin-padding-5"
-                ng-repeat="trip in PUPController.myTrips"
-                ng-click="PUPController.openPost(trip._id)"> 
-                    <div class="col-sm-9">
-                        <h4><b>{{trip.place}}</b>: <small>{{trip.tripTitle}}</small></h4>
-                    </div>                         
-                    <button type="button" class="btn btn-info" ng-click="PUPController.UpdateCollapsed=!PUPController.UpdateCollapsed; PUPController.clickedTrip=trip">Edit</button>
-                    <button type="button" class="btn btn-warning" data-ng-click="PUPController.deletePost(trip._id)">Delete</button>
-                </a>                    
+            <div ng-repeat="trip in PUPController.myTrips" class="list-group" style="background: whitesmoke;border-radius: 10px; border: 2px solid grey;padding: 8px;">
+              <div class="row" style="margin-bottom: 0px !important;">
+                <div class="col-sm-8">								
+                    <a ng-click="PUPController.openPost(trip._id)">
+                    <h4><b>{{trip.place}}</b>: <small>{{trip.tripTitle}}</small></h4>
+                    </a>
+                </div>
+                    <div class="col-sm-2">           
+                        <button type="button" class="btn btn-info" ng-click="PUPController.UpdateCollapsed=!PUPController.UpdateCollapsed; PUPController.clickedTrip=trip">Edit</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-warning" data-ng-click="PUPController.deletePost(trip._id)">Delete</button>
+                    </div>                
+                    </div>
             </div>
             <div ng-show="PUPController.UpdateCollapsed">
             <div class="well well-sm">
@@ -210,10 +214,6 @@
                     </div>
                 </form>
             </div>
-            </div>
-        </div>
-        <div ng-show="PUPController.UpdateCollapsed">
-            <div class="well well-sm">
             </div>
         </div>
         </div>        

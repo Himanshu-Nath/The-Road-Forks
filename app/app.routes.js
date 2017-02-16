@@ -72,6 +72,12 @@ angular.module('trfApp')
           url : '/newPost',
           templateUrl : 'app/components/partner/newPost/newPost.view.html',
           authenticate : true
+        })
+        
+        .state('client.home.profile', {
+          url : '/profile',
+          templateUrl : 'app/components/partner/profile/profile.view.html',
+          authenticate : true
         });
 
         $urlRouterProvider.otherwise('/login/signin');

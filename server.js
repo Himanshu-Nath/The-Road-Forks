@@ -10,12 +10,15 @@ app.use(bodyParser.json());
 
 var mail = require('./route/mail');
 var user = require('./route/trfUser');
+var profile = require('./route/trfRegistration');
 var trip = require('./route/trfAllTrip');
 
 app.post('/trf/api/register', user.registerUser);
 app.post('/trf/api/login', user.loginUser);
 app.post('/trf/api/uploadImage', user.uploadProfileImage);
 app.post('/trf/api/forgetPasswordByQuestions', user.forgetPasswordByQuestions);
+
+app.get('/trf/api/profile/get/:profileId', profile.getUserProfile);
 
 app.post('/trf/api/forgetPasswordByMail', mail.forgetPasswordByMail);
 

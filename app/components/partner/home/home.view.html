@@ -15,8 +15,8 @@
                 <h3><b>{{PHController.loginUserInfo.firstname}} {{PHController.loginUserInfo.lastname}}</b></h3>
                 <div class="col-md-12 center">
                     <ul class="nav nav-pills nav-stacked">
-                        <li ><a href="#">Profile</a></li>
-                        <li><a href="#">Edit</a></li>
+                        <li ng-class="{ active: isActive('/client/home/profile')}"><a ui-sref="client.home.profile">Profile</a></li>
+                        <li ng-class="{ active: isActive('/client/home/editProfile')}"><a ui-sref="client.home.editProfile">Edit</a></li>
                         <li ng-class="{ active: isActive('/client/home/yourPost')}"><a ui-sref="client.home.yourPost">Your Posts</a></li>
                         <li ng-class="{ active: isActive('/client/home/findPost')}"><a ui-sref="client.home.findPost">Find Posts</a></li>
                         <li ng-class="{ active: isActive('/client/home/newPost')}"><a ui-sref="client.home.newPost">Add Posts</a></li>

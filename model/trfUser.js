@@ -13,6 +13,8 @@ var UserSchema = new Schema({
     image : String,
     question1 : String,
     answer1 : String,
-    email : String
+    email : String,
+    altId : String,
+    secretKey : String
 });
 mongoose.model('trfuser', UserSchema);

@@ -41,7 +41,9 @@ exports.registerUser = function(req, res){
         // image : "",
         question1 : user.question,
         answer1 : user.answer,
-        email : user.email
+        email : user.email,
+        altId : user.username,
+        secretKey : "Abcd$12345"
     });    
     
     user.save(function(err, result){

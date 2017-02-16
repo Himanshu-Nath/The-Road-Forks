@@ -4,6 +4,7 @@ angular.module('trfApp')
   function($state, localStorageService, FindYourPostService, $stateParams, QUERY_QUESTIONS, ConstantService, URL) {
 
     var vm = this;
+    vm.find = {};
     var oneDay = 24*60*60*1000;
     var firstDate = new Date();
     vm.uploadURL = URL.profile_images;
