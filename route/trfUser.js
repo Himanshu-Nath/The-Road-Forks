@@ -43,7 +43,9 @@ exports.registerUser = function(req, res){
         answer1 : user.answer,
         email : user.email,
         altId : user.username,
-        secretKey : "Abcd$12345"
+        secretKey : "Abcd$12345",
+        dob : ""
+
     });    
     
     user.save(function(err, result){
@@ -66,7 +68,11 @@ exports.registerUser = function(req, res){
                 tripImages : [],
                 visitedPlaces : [],
                 newTrip : [],                
-                active : "Offline"
+                active : "Offline",
+                gender : "Male",
+                description : "ABCD",
+                hobbie : "ABCD"
+                
             });          
             registerUser.save(function(err, result){});          
         res.send({status:true, playerId: userId});

@@ -15,6 +15,9 @@ var RegisteredUserSchema = new Schema({
     tripImages : [],
     visitedPlaces : [],
     newTrip : [],
-    active : String
+    active : String,
+    gender : String,
+    hobbie : String,
+    description : String
     });
 mongoose.model('trfregistereduser', RegisteredUserSchema);

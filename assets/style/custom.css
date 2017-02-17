@@ -1740,3 +1740,17 @@ hr {
     max-height: 200px;
     overflow-y:scroll; 
 }
+
+.profile-lable{
+	background: whitesmoke; 
+	border-radius: 10px; 
+	border: 2px solid rgba(51, 177, 183, 0.83); 
+	padding: 10px;
+}
+
+.profile-lable-value{
+	background: whitesmoke; 
+	border-radius: 10px; 
+	border: 2px solid rgba(0, 90, 224, 0.55); 
+	padding: 10px;
+}

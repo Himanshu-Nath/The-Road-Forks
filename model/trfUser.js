@@ -15,6 +15,7 @@ var UserSchema = new Schema({
     answer1 : String,
     email : String,
     altId : String,
-    secretKey : String
+    secretKey : String,
+    dob : Date
 });
 mongoose.model('trfuser', UserSchema);
