@@ -44,6 +44,7 @@ exports.getUserProfile = function(req, res){
                     userData.altId = usersResult.altId;
                     userData.secretKey = usersResult.secretKey;
                     userData.dob = usersResult.dob;
+                    userData.mobile = usersResult.mobile;
                     res.send({status : true, userData});
                 }
                 else

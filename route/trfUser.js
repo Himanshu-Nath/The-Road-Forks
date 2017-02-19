@@ -44,7 +44,8 @@ exports.registerUser = function(req, res){
         email : user.email,
         altId : user.username,
         secretKey : "Abcd$12345",
-        dob : ""
+        dob : "",
+        doc : ""
 
     });    
     
