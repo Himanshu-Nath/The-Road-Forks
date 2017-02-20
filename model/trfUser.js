@@ -9,7 +9,7 @@ var UserSchema = new Schema({
     status : String,
     token : String,
     mobile : Number,
-    lastActive : String,
+    lastActive : Date,
     image : String,
     question1 : String,
     answer1 : String,
@@ -17,6 +17,6 @@ var UserSchema = new Schema({
     altId : String,
     secretKey : String,
     dob : Date,
-    doc : Date
+    doj : Date
 });
 mongoose.model('trfuser', UserSchema);

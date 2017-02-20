@@ -78,6 +78,12 @@ angular.module('trfApp')
           url : '/profile',
           templateUrl : 'app/components/partner/profile/profile.view.html',
           authenticate : true
+        })
+        
+        .state('client.home.editProfile', {
+          url : '/editProfile',
+          templateUrl : 'app/components/partner/editProfile/editProfile.view.html',
+          authenticate : true
         });
 
         $urlRouterProvider.otherwise('/login/signin');

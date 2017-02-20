@@ -22,13 +22,5 @@ angular.module('trfApp')
     }  else {
       $state.go('login.signin');
     }
-
-    if(ConstantService.getSessionStatus()){
-      vm.eraseFind = function() {
-        vm.searchedTrip = null;
-      }
-    }  else {
-      $state.go('login.signin');
-    }
   }
 ]);

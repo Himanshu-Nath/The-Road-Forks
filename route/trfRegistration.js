@@ -45,6 +45,7 @@ exports.getUserProfile = function(req, res){
                     userData.secretKey = usersResult.secretKey;
                     userData.dob = usersResult.dob;
                     userData.mobile = usersResult.mobile;
+                    userData.doj = usersResult.doj;
                     res.send({status : true, userData});
                 }
                 else

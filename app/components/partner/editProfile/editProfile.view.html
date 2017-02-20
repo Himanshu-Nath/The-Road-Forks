@@ -1,4 +1,4 @@
-<div ng-controller="UserProfileController as UPController">
+<div ng-controller="UserEditProfileController as UEPController">
     <div class="row">
         <br>
         <div class="col-lg-12">
@@ -9,72 +9,75 @@
             <div class="col-lg-12">
                 <div class="card hovercard">
                     <div class="card-background">
-                        <img class="card-bkimg" alt="User Image" src="{{PHController.uploadURL}}{{UPController.profile.image}}">
+                        <img class="card-bkimg" alt="User Image" src="{{UEPController.uploadURL}}{{UEPController.edit.image}}">
                     </div>
                     <div class="useravatar">
-                        <img alt="" src="{{PHController.uploadURL}}{{UPController.profile.image}}">
+                        <img alt="User Image" src="{{UEPController.uploadURL}}{{UEPController.edit.image}}">
                     </div>
-                    <div class="card-info"> <span class="card-title">{{UPController.profile.firstName}} {{UPController.profile.lastName}}</span>
-
-                    </div>
-                </div>
-                <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" id="stars" class="btn btn-default" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            <div class="hidden-xs">Stars</div>
-                        </button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                            <div class="hidden-xs">Favorites</div>
-                        </button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            <div class="hidden-xs">Following</div>
-                        </button>
+                    <div class="card-info"> <span class="card-title">{{UEPController.edit.firstName}} {{UEPController.edit.lastName}}</span>
                     </div>
                 </div>
-                <br>
-            </div>            
-            <form class="form-horizontal" name="form" role="form">
+                <div class="btn-pref btn-group btn-group-justified btn-group-lg center" role="group" aria-label="...">
+                    <div class="btn-group" role="group" layout-margin layout-padding>
+                        <input class="ng-hide" id="input-file-id" type="file" ng-model="UEPController.edit.image"
+                        accept="image/*" ngf-max-size="10MB" ngf-select="UEPController.changeImage($file)" />
+                        <label for="input-file-id" class="md-button md-raised md-primary">Change Image</label>
+                    </div>
+                    <div class="btn-group" role="group">                        
+                        <input class="ng-hide" id="input-file-id" multiple type="file" />
+                        <label for="input-file-id" class="md-button md-raised md-primary">Upload File</label>                        
+                    </div>
+                    <div class="btn-group" role="group">
+                        <input class="ng-hide" id="input-file-id" multiple type="file" />
+                        <label for="input-file-id" class="md-button md-raised md-primary">Remove Image</label>
+                    </div>
+                </div>
+            </div>              
+            <form class="form-horizontal" ng-submit="UEPController.editProfile()" name="editProfile" role="form">
                 <div>                 
                     <label class="col-sm-12  profile-lable">
                         <label class="col-sm-12" ><h3>Personal Information:</h3></label>
                         <div class="col-sm-12">
                             <label class="col-sm-3" >Full Name:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.firstName}} {{UPController.profile.lastName}}</label>
+                            <label class="col-sm-8" for="name">{{UEPController.edit.firstName}} {{UEPController.edit.lastName}}</label>
                         </div>
-                        <div class="col-sm-12">
+                        
+                        <div class="col-sm-12" >
                             <label class="col-sm-3" >Description:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.description}}</label>
-                        </div>                        
+                            <input type="text" style="border: 1px solid #ccc; border-radius: 4px;" name="description" id="description" class="col-sm-8" ng-model="UEPController.edit.description" />
+                        </div>   
+                                        
                         <div class="col-sm-12">
                             <label class="col-sm-3" >Date Of Birth:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.dob | date : "fullDate"}}</label>
-                        </div>                        
+                            <label class="col-sm-8" for="name">{{UEPController.edit.dob | date : "fullDate"}}</label>
+                        </div>
+                        
                         <div class="col-sm-12">
                             <label class="col-sm-3" >Email:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.email}}</label>
+                            <label class="col-sm-8" for="name">{{UEPController.edit.email}}</label>
                         </div>
-                        <div class="col-sm-12">
+                        
+                        <div class="col-sm-12" ng-class="{ 'has-error': editProfile.mobile.$dirty && editProfile.mobile.$error.required }">
                             <label class="col-sm-3" >Mobile:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.mobile}}</label>
+                            <input type="text" style="border: 1px solid #ccc; border-radius: 4px;" name="mobile" id="mobile" class="col-sm-8" ng-model="UEPController.edit.mobile" required />
+                            <span ng-show="editProfile.mobile.$dirty && editProfile.mobile.$error.required" class="help-block">Mobile Number is required</span>
                         </div>
+                        
                         <div class="col-sm-12">
                             <label class="col-sm-3" >Gender:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.gender}}</label>
+                            <label class="col-sm-8" for="name">{{UEPController.edit.gender}}</label>
                         </div>
+                        
                         <div class="col-sm-12">
                             <label class="col-sm-3" >Hobbies:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.hobbie}}</label>
+                            <input type="text" style="border: 1px solid #ccc; border-radius: 4px;" name="hobbie" id="hobbie" class="col-sm-8" ng-model="UEPController.edit.hobbie" />
                         </div>
                     </label>
                     <label class="col-sm-12 profile-lable-value">
@@ -82,32 +85,39 @@
                         <div class="col-sm-12">
                             <label class="col-sm-3" >User Name:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.username}}</label>
+                            <label class="col-sm-8" for="name">{{UEPController.edit.username}}</label>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" ng-class="{ 'has-error': editProfile.altId.$dirty && editProfile.altId.$error.required }">
                             <label class="col-sm-3" >Alternative ID:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.altId}}</label>
+                            <input type="text" style="border: 1px solid #ccc; border-radius: 4px;" name="altId" id="altId" class="col-sm-8" ng-model="UEPController.edit.altId" required />
+                            <span ng-show="editProfile.altId.$dirty && editProfile.altId.$error.required" class="help-block">Alternative ID is required</span>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" ng-class="{ 'has-error': editProfile.secretKey.$dirty && editProfile.secretKey.$error.required }">
                             <label class="col-sm-3" >Secret Key:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.secretKey}}</label>
-                        </div>                        
+                            <input type="password" style="border: 1px solid #ccc; border-radius: 4px;" name="secretKey" id="secretKey" class="col-sm-8" ng-model="UEPController.edit.secretKey" required />
+                            <span ng-show="editProfile.secretKey.$dirty && editProfile.secretKey.$error.required" class="help-block">Alternative ID is required</span>
+                        </div>                      
                         <div class="col-sm-12">
                             <label class="col-sm-3" >Date Of Join:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.doj}}</label>
+                            <label class="col-sm-8" for="name">{{UEPController.edit.doj  | date : "fullDate"}}</label>
                         </div>
                         <div class="col-sm-12">
-                            <label class="col-sm-3" >Your Status:</label>
+                            <label class="col-sm-3">Your Status:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.status}}</label>
+                            <label class="col-lg-4"> <input type="radio" ng-model="UEPController.edit.status"
+                                value="Active"> Active
+                            </label>
+                            <label class="col-lg-4"> <input type="radio" ng-model="UEPController.edit.status"
+                                value="Disable"> Disable
+                            </label>                                                         
                         </div>
                         <div class="col-sm-12">
                             <label class="col-sm-3" >Last Active:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.lastActive | date : "fullDate"}}</label>
+                            <label class="col-sm-8" for="name">{{UEPController.edit.lastActive | date : "fullDate"}}</label>
                         </div>
                     </label>
                     <label class="col-sm-12 profile-lable">
@@ -115,7 +125,7 @@
                         <div class="col-sm-12">
                             <label class="col-sm-3" >Friends:</label>
                             <label class="col-sm-1" ></label>
-                            <label class="col-sm-8" for="name">{{UPController.profile.friends.length}}</label>
+                            <label class="col-sm-8" for="name">{{UEPController.profile.friends.length}}</label>
                         </div>
                     </label> 
                     <label class="col-sm-12 profile-lable-value">
@@ -135,7 +145,7 @@
                         </div>
                     </label> 
                     <label class="col-sm-12 profile-lable-value">
-                        <label class="col-sm-12" ><h3>Favourite Information:</h3></label>
+                        <label class="col-sm-12" ><h3>Favourite Places:</h3></label>
                         <div class="col-sm-12">
                             <label class="col-sm-3" >Favourite Places:</label>
                             <label class="col-sm-1" ></label>

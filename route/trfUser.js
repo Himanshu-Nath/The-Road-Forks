@@ -15,8 +15,11 @@ var storage	=	multer.diskStorage({
     callback(null, './uploads/profilePics');
   },
   filename: function (req, file, callback) {
-    callback(null, imageName);    
-  }
+    if(imageName != undefined)
+        callback(null, imageName);
+    else
+        callback(null, 'file' + '-' + Date.now() + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+  }  
 });
 
 var upload = multer({ storage : storage }).single('file');
@@ -122,5 +125,21 @@ exports.uploadProfileImage = function(req, res){
             return;
         } 
         res.json({status : true});
+    });
+}
+
+//Change Profile Pic
+exports.changeProfileImage = function(req, res){
+    upload(req,res,function(err){
+        if(err){
+            res.json({status : false});
+            return;
+        } else {
+            console.log(req.body);
+            console.log(req.file);
+            Users.update({"_id": req.body.userId}, {$set: {"image" : req.file.filename}}, function(err, result) {
+            });
+        }
+        res.json({status : true, name: req.file.filename});
     });
 }
