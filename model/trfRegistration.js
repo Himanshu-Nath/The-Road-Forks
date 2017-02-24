@@ -18,6 +18,7 @@ var RegisteredUserSchema = new Schema({
     active : String,
     gender : String,
     hobbie : String,
-    description : String
+    description : String,
+    address : String
     });
 mongoose.model('trfregistereduser', RegisteredUserSchema);

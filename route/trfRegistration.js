@@ -36,6 +36,7 @@ exports.getUserProfile = function(req, res){
                     userData.gender = result.gender;
                     userData.description = result.description;
                     userData.hobbie = result.hobbie;
+                    userData.address = result.address;
 
                     userData.image = usersResult.image;
                     userData.lastActive = usersResult.lastActive;
@@ -53,5 +54,24 @@ exports.getUserProfile = function(req, res){
             });
         } else
             res.send({status : false});        
+    });
+}
+
+//Edit Profile
+exports.editUserProfile = function(req, res){
+    var data = req.body;   
+    Users.update({"_id": data.userId}, {$set: {"altId" : data.altId, "secretKey" : data.secretKey, "mobile":data.mobile,
+        "status" : data.status }}, function(err, result) {
+            console.log(result);
+    });
+    RegisteredUsers.update({"userId": data.userId}, {$set: {"description" : data.description, "hobbie":data.hobbie,
+         "address":data.address}}, function(err, result) {
+        if (err) return console.error(err);
+        if(result != null && result.length != 0) {
+            console.log(result);
+            res.send({status : true});
+        }
+        else
+            res.send({status:false});        
     });
 }

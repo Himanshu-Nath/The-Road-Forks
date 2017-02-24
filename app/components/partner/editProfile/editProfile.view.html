@@ -25,11 +25,10 @@
                     </div>
                     <div class="btn-group" role="group">                        
                         <input class="ng-hide" id="input-file-id" multiple type="file" />
-                        <label for="input-file-id" class="md-button md-raised md-primary">Upload File</label>                        
+                        <label for="input-file-id" class="md-button md-raised md-primary">Upload Trip Images</label>                        
                     </div>
                     <div class="btn-group" role="group">
-                        <input class="ng-hide" id="input-file-id" multiple type="file" />
-                        <label for="input-file-id" class="md-button md-raised md-primary">Remove Image</label>
+                        <label ng-click="UEPController.removeImage()" class="md-button md-raised md-primary">Remove Image</label>
                     </div>
                 </div>
             </div>              
@@ -78,6 +77,11 @@
                             <label class="col-sm-3" >Hobbies:</label>
                             <label class="col-sm-1" ></label>
                             <input type="text" style="border: 1px solid #ccc; border-radius: 4px;" name="hobbie" id="hobbie" class="col-sm-8" ng-model="UEPController.edit.hobbie" />
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Address:</label>
+                            <label class="col-sm-1" ></label>
+                            <input type="text" style="border: 1px solid #ccc; border-radius: 4px;" name="address" id="address" class="col-sm-8" ng-model="UEPController.edit.address" />
                         </div>
                     </label>
                     <label class="col-sm-12 profile-lable-value">
@@ -176,7 +180,14 @@
                             <label class="col-sm-8" for="name">{{UPController.profile.tripImages.length}}</label>
                         </div>
                     </label>
-                <div>
+                    <div class="form-actions">
+                        <button type="submit" ng-disabled="editProfile.$invalid" ng-click="UPController.editProfile" 
+                            class="btn btn-primary">Update</button>
+                        <span ng-class="{ active: isActive('/client/home/post')}">
+                            <a ui-sref="client.home.post" class="btn btn-link">Cancel</a>
+                        </span>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

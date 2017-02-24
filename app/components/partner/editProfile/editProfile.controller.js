@@ -21,16 +21,16 @@ angular.module('trfApp')
         function(error) {});
 
         vm.editProfile = function(){
-        UserEditProfileService.editProfile(vm.edit)
-          .then(function(response) {            
-            console.log(vm.response);
-                if (response.data.result != undefined) { 
-                    
-                } else {
-                    swal("Fail", "Faild To Fetch Profile Details", "error");
-                }
-          },
-        function(error) {});
+          UserEditProfileService.editProfile(vm.edit)
+            .then(function(response) {            
+              console.log(response);
+                  if (response.data.status == true) { 
+                      swal("Success", "Profile Updated Successfully", "success");
+                  } else {
+                      swal("Fail", "Failed To Update Profile Details", "error");
+                  }
+            },
+          function(error) {});
       }
 
       vm.changeImage = function(file){
@@ -38,9 +38,8 @@ angular.module('trfApp')
           Upload.upload({
                   url: 'http://localhost:3001/trf/api/changeImage',
                   data:{file:file, userId: loginUserInfo.id}
-              }).then(function (resp) {                    
+              }).then(function (resp) {
                     if(resp.data.status == true) {
-                      console.log(resp);
                       vm.edit.image = resp.data.name;
                       loginUserInfo.image = resp.data.name;
                       $rootScope.userImage = resp.data.name;
@@ -51,6 +50,27 @@ angular.module('trfApp')
                 }, function (evt) {
               });
         }
+      }
+
+      vm.removeImage = function(){
+        var removeData = {};
+        if(loginUserInfo.gender == "Male")
+          removeData.imageName  = "boy.jpg";
+        else if(loginUserInfo.gender == "Female")
+          removeData.imageName  = "girl.jpg";
+        removeData.userId = loginUserInfo.id;
+        UserEditProfileService.removeImage(removeData)
+          .then(function(response) {
+                if(response.data.status == true) {
+                      vm.edit.image = removeData.imageName;
+                      loginUserInfo.image = removeData.imageName;
+                      $rootScope.userImage = removeData.imageName;
+                      localStorageService.set('userInfo', loginUserInfo);
+                    } else {
+                    swal("Fail", "Failed To Remove Image", "error");
+                }
+          },
+        function(error) {});
       }
 
     }  else {
