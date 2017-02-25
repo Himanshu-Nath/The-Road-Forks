@@ -52,7 +52,7 @@
                             </div>
                             <div class="d-flex w-100 justify-content-between margin-30">                                        
                                 <small class="text-muted pull-right">{{FYPController.trip.dayOP}} days ago</small>                                            
-                                <h4 class="mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{FYPController.trip.name}}</b></h4>
+                                <h4 class="mb-1"><a ng-click = "FYPController.openProfile(trip.userId)">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{FYPController.trip.name}}</b></a></h4>
                                 <small class="text-muted pull-right"><b>Email Address: </b><i>{{FYPController.trip.email}}</i></small>                                        
                             </div>
                             <h5 class="mb-1"><b>{{FYPController.trip.place}}</b></h5>

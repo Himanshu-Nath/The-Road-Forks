@@ -23,7 +23,7 @@
                             </div>
                             <div class="d-flex w-100 justify-content-between margin-30">                                        
                                 <small class="text-muted pull-right">{{trip.dayOP}} days ago</small>                                            
-                                <h4 class="mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{trip.name}}</b></h4>
+                                <h4 class="mb-1"><a ng-click = "PPController.openProfile(trip.userId)">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{trip.name}}</b></a></h4>
                                 <small class="text-muted pull-right"><b>Email Address: </b><i>{{trip.email}}</i></small>                                        
                             </div>
                             <h5 class="mb-1"><b>{{trip.place}}</b></h5>

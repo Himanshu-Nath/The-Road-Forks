@@ -1,0 +1,178 @@
+<div ng-controller="ClickUserProfileController as CUPController">
+    <div class="row">
+        <br>
+        <div class="col-lg-12">
+            <div class="well well">
+                <h2>User Profile </h2>  
+                <p>A person often meets his destiny on the road he took to avoid it.</p>
+            </div>
+            <div class="col-lg-12">
+                <div class="card hovercard">
+                    <div class="card-background">
+                        <img class="card-bkimg" alt="User Image" src="{{PHController.uploadURL}}{{CUPController.profile.image}}">
+                    </div>
+                    <div class="useravatar">
+                        <img alt="" src="{{PHController.uploadURL}}{{CUPController.profile.image}}">
+                    </div>
+                    <div class="card-info"> <span class="card-title">{{CUPController.profile.firstName}} {{CUPController.profile.lastName}}</span>
+
+                    </div>
+                </div>
+                <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="stars" class="btn btn-default" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <div class="hidden-xs">Add Friend</div>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                            <div class="hidden-xs">Message Chat</div>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <div class="hidden-xs">Video Call</div>
+                        </button>
+                    </div>
+                </div>
+                <br>
+            </div>            
+            <form class="form-horizontal" name="form" role="form">
+                <div>                 
+                    <label class="col-sm-12  profile-lable">
+                        <label class="col-sm-12" ><h3>Personal Information:</h3></label>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Full Name:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.firstName}} {{CUPController.profile.lastName}}</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Description:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.description}}</label>
+                        </div>                        
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Date Of Birth:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.dob | date : "fullDate"}}</label>
+                        </div>                        
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Email:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.email}}</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Mobile:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.mobile}}</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Gender:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.gender}}</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Hobbies:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.hobbie}}</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Address:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.address}}</label>
+                        </div>
+                    </label>
+                    <label class="col-sm-12 profile-lable-value">
+                        <label class="col-sm-12" ><h3>Account Information:</h3></label>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >User Name:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.username}}</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Alternative ID:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.altId}}</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Secret Key:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.secretKey}}</label>
+                        </div>                        
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Date Of Join:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.doj}}</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Your Status:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.status}}</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Last Active:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.lastActive | date : "fullDate"}}</label>
+                        </div>
+                    </label>
+                    <label class="col-sm-12 profile-lable">
+                        <label class="col-sm-12" ><h3>Friends Information:</h3></label>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Friends:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.friends.length}}</label>
+                        </div>
+                    </label> 
+                    <label class="col-sm-12 profile-lable-value">
+                        <label class="col-sm-12" ><h3>Blocked Friends Information:</h3></label>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Blocked Friends:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.block.length}}</label>
+                        </div>
+                    </label>
+                    <label class="col-sm-12 profile-lable">
+                        <label class="col-sm-12" ><h3>Invitations Information:</h3></label>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Invitations:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.invitations.length}}</label>
+                        </div>
+                    </label> 
+                    <label class="col-sm-12 profile-lable-value">
+                        <label class="col-sm-12" ><h3>Favourite Information:</h3></label>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Favourite Places:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.favPlaces.length}}</label>
+                        </div>
+                    </label>
+                    <label class="col-sm-12 profile-lable">
+                        <label class="col-sm-12" ><h3>New Trips Information:</h3></label>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >New Trip:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.newTrip.length}}</label>
+                        </div>
+                    </label>
+                    <label class="col-sm-12 profile-lable-value">
+                        <label class="col-sm-12" ><h3>Visited Places Information:</h3></label>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Visited Places:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.visitedPlaces.length}}</label>
+                        </div>
+                    </label>
+                    <label class="col-sm-12 profile-lable">
+                        <label class="col-sm-12" ><h3>Trips Images:</h3></label>
+                        <div class="col-sm-12">
+                            <label class="col-sm-3" >Images:</label>
+                            <label class="col-sm-1" ></label>
+                            <label class="col-sm-8" for="name">{{CUPController.profile.tripImages.length}}</label>
+                        </div>
+                    </label>
+                <div>
+            </form>
+        </div>
+    </div>
+</div>

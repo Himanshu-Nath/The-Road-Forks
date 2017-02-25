@@ -10,7 +10,7 @@ angular.module('trfApp')
     vm.logoURL = URL.logo_images;
     vm.loginUserInfo = localStorageService.get('userInfo');
 
-    if(ConstantService.getSessionStatus()){     
+    if(ConstantService.getSessionStatus()){
       PartnerPostService.getAllTrips()
         .then(function(response) {
               if (response.data.result != undefined) {
@@ -24,12 +24,8 @@ angular.module('trfApp')
               }
         },
       function(error) {});
-    }  else {
-      $state.go('login.signin');
-    }
 
-    if(ConstantService.getSessionStatus()){
-      vm.reportPost = function(id){     
+        vm.reportPost = function(id){     
         PartnerPostService.reportPost(vm.user, id)
           .then(function(response) {
                 if (response.data.result != undefined) {
@@ -41,11 +37,7 @@ angular.module('trfApp')
           },
         function(error) {});
       }
-    }  else {
-      $state.go('login.signin');
-    } 
 
-    if(ConstantService.getSessionStatus()){
       vm.likePost = function(id){     
         PartnerPostService.likePost(vm.user, id)
           .then(function(response) {
@@ -58,17 +50,17 @@ angular.module('trfApp')
           },
         function(error) {});
       }
-    }  else {
-      $state.go('login.signin');
-    }
 
-    if(ConstantService.getSessionStatus()){
-      vm.newPost = function(id){     
+      vm.newPost = function(id){
         $state.go('client.home.newPost');
       }
+
+      vm.openProfile = function(id){
+        $state.go('client.home.clickProfile', {'profileId' : id});
+      }
+
     }  else {
       $state.go('login.signin');
     } 
-
   }
 ]);

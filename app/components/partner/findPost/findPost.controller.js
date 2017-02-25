@@ -61,6 +61,11 @@ angular.module('trfApp')
       vm.setSelected = function(idSelectedVote){
         vm.idSelectedVote = idSelectedVote;
       }
+
+      vm.openProfile = function(id){
+        $state.go('client.home.clickProfile', {'profileId' : id});
+      }
+      
     }  else {
       $state.go('login.signin');
     }
