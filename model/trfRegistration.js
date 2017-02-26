@@ -19,6 +19,8 @@ var RegisteredUserSchema = new Schema({
     gender : String,
     hobbie : String,
     description : String,
-    address : String
+    address : String,
+    message : [],
+    chat : []
     });
 mongoose.model('trfregistereduser', RegisteredUserSchema);

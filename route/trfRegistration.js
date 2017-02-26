@@ -75,3 +75,61 @@ exports.editUserProfile = function(req, res){
             res.send({status:false});        
     });
 }
+
+//Send Friend Request
+exports.sendFreindRequest = function(req, res){
+    var data = req.body;
+    // RegisteredUsers.update({"userId": data.to}, {$push: {"invitations" : {"from" : data.from, "name" : data.name, 
+    //     "image" : data.image, "date" : data.date, "status" : data.status}}}, function(err, result) {
+    //     if (err) return console.error(err);
+    //     if(result != null) {
+    //         res.send({status : true});
+    //     }
+    //     else
+    //         res.send({status:false});        
+    // });
+    RegisteredUsers.findOne({"invitations": { $elemMatch: { "from" : data.from}}}, function(err, result) {
+        if (err) {
+            return console.error(err);
+        }
+        if(result == null) {
+            RegisteredUsers.update({"userId": data.to}, {$push: {"invitations" : {"from" : data.from, "name" : data.name, 
+                "image" : data.image, "date" : data.date, "status" : data.status}}}, function(err, result) {
+                if (err) return console.error(err);
+                if(result != null) {
+                    res.send({status : true});
+                }
+                else
+                    res.send({status:false});        
+            });
+        } else if(result != null) {
+            res.send({status : false});   
+        }  
+    });
+}
+
+//Send Message
+exports.sendMessage = function(req, res){
+    var data = req.body;
+
+    RegisteredUsers.update({"message": { $elemMatch: { "from" : data.from}}}, {"$push":{"message.$.msgInfo":[{"date" :
+     data.date, "direction" : data.direction, "message" : data.message }]}}, function(err, result) {
+        if (err) {            
+            return console.error(err);
+        }
+        if(result.nModified == 0) {
+            RegisteredUsers.update({"userId": data.to}, {$push: {"message" : {"from" : data.from, "name" : data.name, 
+            "image" : data.image, "msgInfo":[{ "date" : data.date, "direction" : data.direction, "message" : data.message
+            }]}}}, function(err, result) {
+                if (err) return console.error(err);
+                if(result.nModified > 0) {
+                    res.send({status : true});
+                }
+                else if(result.nModified == 0)
+                    res.send({status:false});        
+            });
+        } else if(result.nModified > 0) {
+            res.send({status : true});   
+        }  
+    });
+}

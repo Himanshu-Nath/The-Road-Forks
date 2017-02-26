@@ -34,6 +34,9 @@ app.get('/trf/api/post/placeById/:placeId', trip.placeById);
 app.put('/trf/api/post/delete/:postId', trip.deleteTrip);
 app.post('/trf/api/post/addPostImage', trip.addNewTripImage);
 
+app.post('/trf/api/send/freindRequest', profile.sendFreindRequest);
+app.post('/trf/api/send/message', profile.sendMessage);
+
 var server = app.listen(port, function () {
 	var host = server.address().address
 	var port = server.address().port
