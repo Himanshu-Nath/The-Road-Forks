@@ -1,12 +1,12 @@
 angular.module('trfApp')
 
-.factory('PartnerUpdatePostService', ['$http', '$q', '$rootScope', 
-function($http, $q, $rootScope) {    
+.factory('PartnerUpdatePostService', ['$http', '$q', '$rootScope', 'appConfig',
+function($http, $q, $rootScope, appConfig) {    
     var PartnerUpdatePostService = {};
 
      PartnerUpdatePostService.myAllTrips = function(userInfo) {
         var deferred = $q.defer();
-        $http.get('/trf/api/post/myTrip/'+userInfo.id)
+        $http.get(appConfig.serviceUrl + '/trf/api/post/myTrip/'+userInfo.id)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);
@@ -20,7 +20,7 @@ function($http, $q, $rootScope) {
 
       PartnerUpdatePostService.updatePost = function(editedTrip) {
         var deferred = $q.defer();
-        $http.post('/trf/api/post/edit', editedTrip)
+        $http.post(appConfig.serviceUrl + '/trf/api/post/edit', editedTrip)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);
@@ -34,7 +34,7 @@ function($http, $q, $rootScope) {
 
       PartnerUpdatePostService.deletePost = function(id) {
         var deferred = $q.defer();
-        $http.put('/trf/api/post/delete/'+id)
+        $http.put(appConfig.serviceUrl + '/trf/api/post/delete/'+id)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);

@@ -1,12 +1,12 @@
 angular.module('trfApp')
 
-.factory('ForgotPasswordService', ['$http', '$q', '$rootScope', 
-function($http, $q, $rootScope) {    
+.factory('ForgotPasswordService', ['$http', '$q', '$rootScope', 'appConfig',
+function($http, $q, $rootScope, appConfig) {    
     var ForgotPasswordService = {};
 
       ForgotPasswordService.forgotUserPasswordByQuestions =  function(user){
       var deferred = $q.defer();
-      $http.post('/trf/api/forgetPasswordByQuestions', user)
+      $http.post(appConfig.serviceUrl + '/trf/api/forgetPasswordByQuestions', user)
       .then(function successCallback(response) {
         deferred.resolve(response);
       }, function errorCallback(response) {
@@ -19,7 +19,7 @@ function($http, $q, $rootScope) {
 
       ForgotPasswordService.forgotUserPasswordByMail =  function(user){
       var deferred = $q.defer();
-      $http.post('/trf/api/forgetPasswordByMail', user)
+      $http.post(appConfig.serviceUrl + '/trf/api/forgetPasswordByMail', user)
       .then(function successCallback(response) {
         deferred.resolve(response);
       }, function errorCallback(response) {

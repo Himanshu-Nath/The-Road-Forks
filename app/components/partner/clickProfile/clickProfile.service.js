@@ -1,12 +1,12 @@
 angular.module('trfApp')
 
-.factory('ClickUserProfileService', ['$http', '$q', '$rootScope', 
-function($http, $q, $rootScope) {    
+.factory('ClickUserProfileService', ['$http', '$q', '$rootScope', 'appConfig',
+function($http, $q, $rootScope, appConfig) {    
     var ClickUserProfileService = {};
 
      ClickUserProfileService.sendFriendRequest = function(sendRequestData) {
         var deferred = $q.defer();
-        $http.post('/trf/api/send/freindRequest', sendRequestData)
+        $http.post(appConfig.serviceUrl + '/trf/api/send/freindRequest', sendRequestData)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);
@@ -20,7 +20,7 @@ function($http, $q, $rootScope) {
 
      ClickUserProfileService.sendMessage = function(sendMessageData) {
         var deferred = $q.defer();
-        $http.post('/trf/api/send/message', sendMessageData)
+        $http.post(appConfig.serviceUrl + '/trf/api/send/message', sendMessageData)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);

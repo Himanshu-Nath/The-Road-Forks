@@ -1,12 +1,12 @@
 angular.module('trfApp')
 
-.factory('PartnerYourPostService', ['$http', '$q', '$rootScope', 
-function($http, $q, $rootScope) {    
+.factory('PartnerYourPostService', ['$http', '$q', '$rootScope', 'appConfig',
+function($http, $q, $rootScope, appConfig) {    
     var PartnerYourPostService = {};
 
      PartnerYourPostService.myAllTrips = function(userInfo) {
         var deferred = $q.defer();
-        $http.get('/trf/api/post/myTrip/'+userInfo.id)
+        $http.get(appConfig.serviceUrl + '/trf/api/post/myTrip/'+userInfo.id)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);
@@ -20,7 +20,7 @@ function($http, $q, $rootScope) {
 
       PartnerYourPostService.changePostStatus = function(postStatus) {
         var deferred = $q.defer();
-        $http.post('/trf/api/post/status', postStatus)
+        $http.post(appConfig.serviceUrl + '/trf/api/post/status', postStatus)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);

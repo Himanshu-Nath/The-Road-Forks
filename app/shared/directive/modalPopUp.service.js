@@ -1,12 +1,12 @@
 angular.module('trfApp')
 
-.factory('ModalPopUpService', ['$q', '$http',
-	function($q, $http) {
+.factory('ModalPopUpService', ['$q', '$http', 'appConfig',
+	function($q, $http, appConfig) {
 		var ModalPopUpService = {};
 		
 		ModalPopUpService.addComment = function(resource) {
 			var deferred = $q.defer();			
-			$http.post('/trf/api/post/comment', resource)
+			$http.post(appConfig.serviceUrl + '/trf/api/post/comment', resource)
 			.then(function successCallback(response) {
 			deferred.resolve(response.data);
 			}, function errorCallback(response) {
@@ -18,7 +18,7 @@ angular.module('trfApp')
 
 		ModalPopUpService.sendMessage = function(resource) {
 			var deferred = $q.defer();			
-			$http.post('/trf/api/post/sendMessage', resource)
+			$http.post(appConfig.serviceUrl + '/trf/api/post/sendMessage', resource)
 			.then(function successCallback(response) {
 			deferred.resolve(response.data);
 			}, function errorCallback(response) {
@@ -30,7 +30,7 @@ angular.module('trfApp')
 
 		ModalPopUpService.joinTrip = function(resource) {
 			var deferred = $q.defer();			
-			$http.post('/trf/api/trip/joinTrip', resource)
+			$http.post(appConfig.serviceUrl + '/trf/api/trip/joinTrip', resource)
 			.then(function successCallback(response) {
 			deferred.resolve(response.data);
 			}, function errorCallback(response) {
@@ -42,7 +42,7 @@ angular.module('trfApp')
 
 		ModalPopUpService.sendFeedback = function(resource) {
 			var deferred = $q.defer();			
-			$http.post('/trf/api/trip/feedback', resource)
+			$http.post(appConfig.serviceUrl + '/trf/api/trip/feedback', resource)
 			.then(function successCallback(response) {
 			deferred.resolve(response.data);
 			}, function errorCallback(response) {

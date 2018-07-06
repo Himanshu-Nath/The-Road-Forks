@@ -1,7 +1,7 @@
 angular.module('trfApp')
 
-.controller('UserEditProfileController', ['$rootScope', '$state', 'localStorageService', 'UserEditProfileService', 'UserProfileService', 'ConstantService', 'URL', 'Upload',
-  function($rootScope, $state, localStorageService, UserEditProfileService, UserProfileService, ConstantService, URL, Upload) {
+.controller('UserEditProfileController', ['$rootScope', '$state', 'localStorageService', 'UserEditProfileService', 'UserProfileService', 'ConstantService', 'URL', 'Upload', 'appConfig',
+  function($rootScope, $state, localStorageService, UserEditProfileService, UserProfileService, ConstantService, URL, Upload, appConfig) {
 
     var vm = this;
     vm.uploadURL = URL.profile_images;
@@ -36,7 +36,7 @@ angular.module('trfApp')
       vm.changeImage = function(file){
         if(file != undefined) {          
           Upload.upload({
-                  url: 'http://localhost:3001/trf/api/changeImage',
+                  url: appConfig.serviceUrl + '/trf/api/changeImage',
                   data:{file:file, userId: loginUserInfo.id}
               }).then(function (resp) {
                     if(resp.data.status == true) {

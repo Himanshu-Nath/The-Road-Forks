@@ -1,7 +1,7 @@
 angular.module('trfApp')
 
-.controller('PartnerUpdatePostController', ['$scope' ,'$state', 'localStorageService', 'PartnerUpdatePostService', '$filter', 'QUERY_QUESTIONS', 'ConstantService', 'URL', 'Upload',
-  function($scope, $state, localStorageService, PartnerUpdatePostService, $filter, QUERY_QUESTIONS, ConstantService, URL, Upload) {
+.controller('PartnerUpdatePostController', ['$scope' ,'$state', 'localStorageService', 'PartnerUpdatePostService', '$filter', 'QUERY_QUESTIONS', 'ConstantService', 'URL', 'Upload', 'appConfig',
+  function($scope, $state, localStorageService, PartnerUpdatePostService, $filter, QUERY_QUESTIONS, ConstantService, URL, Upload, appConfig) {
 
     var vm = this;
     var oneDay = 24*60*60*1000;
@@ -137,7 +137,7 @@ angular.module('trfApp')
 
     var uploadImage = function (file) {
         Upload.upload({
-            url: 'http://localhost:3001/trf/api/post/addPostImage',
+            url: appConfig.serviceUrl + '/trf/api/post/addPostImage',
             data:{file:file}
         }).then(function (resp) {
             if(resp.data.status == true){

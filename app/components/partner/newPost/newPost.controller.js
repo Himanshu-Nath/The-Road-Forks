@@ -1,7 +1,7 @@
 angular.module('trfApp')
 
-.controller('PartnerNewPostController', ['$scope', '$state', 'localStorageService', 'PartnerNewPostService', 'ConstantService', 'Upload', 'URL',
-  function($scope, $state, localStorageService, PartnerNewPostService, ConstantService, Upload, URL) {
+.controller('PartnerNewPostController', ['$scope', '$state', 'localStorageService', 'PartnerNewPostService', 'ConstantService', 'Upload', 'URL', 'appConfig',
+  function($scope, $state, localStorageService, PartnerNewPostService, ConstantService, Upload, URL, appConfig) {
 
     var vm = this;
     vm.logoURL = URL.logo_images;
@@ -95,7 +95,7 @@ angular.module('trfApp')
 
     var uploadImage = function (file) {
         Upload.upload({
-            url: 'http://localhost:3001/trf/api/post/addPostImage',
+            url: appConfig.serviceUrl + '/trf/api/post/addPostImage',
             data:{file:file}
         }).then(function (resp) {
             if(resp.data.status == true){

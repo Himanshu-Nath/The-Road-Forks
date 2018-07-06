@@ -1,12 +1,12 @@
 angular.module('trfApp')
 
-.factory('PartnerNewPostService', ['$http', '$q', '$rootScope', 
-function($http, $q, $rootScope) {    
+.factory('PartnerNewPostService', ['$http', '$q', '$rootScope', 'appConfig',
+function($http, $q, $rootScope, appConfig) {    
     var PartnerNewPostService = {};
 
     PartnerNewPostService.newTripPlan =  function(user){
         var deferred = $q.defer();
-        $http.post('/trf/api/post/newTrip', user)
+        $http.post(appConfig.serviceUrl + '/trf/api/post/newTrip', user)
         .then(function successCallback(response) {
           deferred.resolve(response);
         }, function errorCallback(response) {

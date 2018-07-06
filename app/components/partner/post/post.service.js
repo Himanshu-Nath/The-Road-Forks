@@ -1,12 +1,12 @@
 angular.module('trfApp')
 
-.factory('PartnerPostService', ['$http', '$q', '$rootScope', 
-function($http, $q, $rootScope) {    
+.factory('PartnerPostService', ['$http', '$q', '$rootScope', 'appConfig',
+function($http, $q, $rootScope, appConfig) {    
     var PartnerPostService = {};
 
      PartnerPostService.getAllTrips = function() {
         var deferred = $q.defer();
-        $http.get('/trf/api/post/allTrips')
+        $http.get(appConfig.serviceUrl + '/trf/api/post/allTrips')
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);
@@ -20,7 +20,7 @@ function($http, $q, $rootScope) {
 
       PartnerPostService.reportPost = function() {
         var deferred = $q.defer();
-        $http.get('/trf/api/post/report')
+        $http.get(appConfig.serviceUrl + '/trf/api/post/report')
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);
@@ -34,7 +34,7 @@ function($http, $q, $rootScope) {
 
       PartnerPostService.likePost = function() {
         var deferred = $q.defer();
-        $http.get('/trf/api/post/like')
+        $http.get(appConfig.serviceUrl + '/trf/api/post/like')
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);

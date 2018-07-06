@@ -1,12 +1,12 @@
 angular.module('trfApp')
 
-.factory('UserProfileService', ['$http', '$q', '$rootScope', 
-function($http, $q, $rootScope) {    
+.factory('UserProfileService', ['$http', '$q', '$rootScope', 'appConfig', 
+function($http, $q, $rootScope, appConfig) {    
     var UserProfileService = {};
 
      UserProfileService.getProfile = function(id) {
         var deferred = $q.defer();
-        $http.get('/trf/api/profile/get/'+id)
+        $http.get(appConfig.serviceUrl + '/trf/api/profile/get/'+id)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);

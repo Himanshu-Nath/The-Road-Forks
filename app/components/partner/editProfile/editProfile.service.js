@@ -1,12 +1,12 @@
 angular.module('trfApp')
 
-.factory('UserEditProfileService', ['$http', '$q', '$rootScope', 
-function($http, $q, $rootScope) {    
+.factory('UserEditProfileService', ['$http', '$q', '$rootScope', 'appConfig',
+function($http, $q, $rootScope, appConfig) {    
     var UserEditProfileService = {};
 
      UserEditProfileService.editProfile = function(edit) {
         var deferred = $q.defer();
-        $http.post('/trf/api/profile/edit', edit)
+        $http.post(appConfig.serviceUrl + '/trf/api/profile/edit', edit)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);
@@ -20,7 +20,7 @@ function($http, $q, $rootScope) {
 
      UserEditProfileService.removeImage = function(removeImageData) {
         var deferred = $q.defer();
-        $http.post('/trf/api/removeImage', removeImageData)
+        $http.post(appConfig.serviceUrl + '/trf/api/removeImage', removeImageData)
           .then(function successCallback(response) {
                   if(response.data.status == true) 
                       deferred.resolve(response);
